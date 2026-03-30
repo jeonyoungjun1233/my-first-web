@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const profileItems = [
   { label: "이름", value: "전영준" },
   { label: "학과", value: "공공인재빅데이터융합학" },
@@ -7,10 +9,21 @@ const profileItems = [
 
 const techBadges = ["Next.js 14.2.21", "React 18.3.1", "Tailwind CSS 3.4.17"];
 
+const blogPreviewCards = [
+  {
+    title: "시맨틱 태그로 구조 잡기",
+    description: "header, nav, main, article, footer로 블로그 뼈대를 나누는 연습을 정리했습니다.",
+  },
+  {
+    title: "Tailwind와 반응형 적용",
+    description: "카드 스타일과 모바일 우선 1열/2열 전환을 카드뉴스 형식으로 정리했습니다.",
+  },
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50 px-6 py-16">
-      <section className="mx-auto flex max-w-5xl flex-col gap-6 lg:flex-row">
+      <section className="mx-auto flex max-w-6xl flex-col gap-6 lg:flex-row">
         <div className="rounded-3xl bg-slate-900 p-8 text-white shadow-xl lg:w-2/5">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-300">
             Chapter 2 Assignment
@@ -30,6 +43,13 @@ export default function Home() {
               사람이 되고 싶습니다.
             </p>
           </div>
+
+          <Link
+            href="/blog"
+            className="mt-8 inline-flex items-center rounded-full bg-sky-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-300"
+          >
+            카드뉴스 보러 가기
+          </Link>
         </div>
 
         <div className="flex-1 rounded-3xl bg-white p-8 shadow-xl">
@@ -37,7 +57,7 @@ export default function Home() {
             <div>
               <p className="text-sm font-semibold text-blue-600">블로그 소개 페이지</p>
               <h2 className="mt-2 text-2xl font-bold text-slate-900">
-                Copilot 과제 제출용 최종본
+                자기소개와 학습 기록을 함께 담은 홈
               </h2>
             </div>
             <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
@@ -63,6 +83,36 @@ export default function Home() {
               AI 도구를 활용하더라도 결과를 직접 검증하고, 공공 분야의 데이터를 이해하는
               시각을 함께 키우는 개발자가 되고자 합니다.
             </p>
+          </div>
+
+          <div className="mt-8">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold text-slate-600">오늘의 카드뉴스</p>
+                <p className="mt-1 text-lg font-bold text-slate-900">
+                  Chapter 3 학습 내용을 블로그 카드로 정리했습니다.
+                </p>
+              </div>
+              <Link
+                href="/blog"
+                className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-sky-400 hover:text-sky-600"
+              >
+                전체 보기
+              </Link>
+            </div>
+
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              {blogPreviewCards.map((card) => (
+                <div
+                  key={card.title}
+                  className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                >
+                  <p className="text-sm font-semibold text-sky-600">학습 카드</p>
+                  <h3 className="mt-2 text-lg font-bold text-slate-900">{card.title}</h3>
+                  <p className="mt-3 leading-7 text-slate-600">{card.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-8">
