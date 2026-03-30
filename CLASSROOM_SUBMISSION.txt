@@ -1,0 +1,6 @@
+① 배포 URL
+https://여기에-배포-후-발급된-vercel-url 입력
+
+② AI가 틀린 부분 1개 또는 확인한 점
+Copilot이 생성한 코드에서 className 사용과 App Router 규칙이 올바른지 확인했다.
+이 페이지는 정적 자기소개 페이지이므로 불필요한 "use client" 없이 서버 컴포넌트로 유지했다.
