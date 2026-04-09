@@ -76,12 +76,12 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram 바로가기"
-                className="group flex items-center gap-3 rounded-full bg-white px-4 py-3 text-sm font-bold text-[#3f0413] shadow-[0_0_28px_rgba(255,255,255,0.22)] transition hover:-translate-y-0.5"
+                className="group flex items-center gap-3 rounded-full border border-white/15 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-orange-400 px-4 py-3 text-sm font-bold text-white shadow-[0_0_30px_rgba(236,72,153,0.38)] transition hover:-translate-y-0.5 hover:shadow-[0_0_38px_rgba(244,114,182,0.45)]"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f8d7df] text-[#8a183f] transition group-hover:scale-105">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white ring-1 ring-white/30 transition group-hover:scale-105">
                   <InstagramIcon className="h-5 w-5" />
                 </span>
-                <span>Instagram 바로가기</span>
+                <span className="tracking-[0.02em] text-white">Instagram 바로가기</span>
               </a>
               <a
                 href="https://www.youtube.com/@%EC%A0%84%EC%98%81%EC%A4%80-c1h"
@@ -128,7 +128,7 @@ export default function HomePage() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Instagram 프로필 이동"
-                  className="neon-pill flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:text-white"
+                  className="flex items-center gap-2 rounded-full border border-white/15 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-orange-400 px-3 py-2 text-xs font-semibold text-white shadow-[0_0_22px_rgba(236,72,153,0.24)] transition hover:-translate-y-0.5"
                 >
                   <InstagramIcon className="h-4 w-4" />
                   <span>Instagram</span>
