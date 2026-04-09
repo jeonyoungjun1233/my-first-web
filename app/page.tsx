@@ -2,6 +2,36 @@ import Link from "next/link";
 import ChecklistPanel from "../components/checklist-panel";
 import { finalChecklist, posts, profile } from "../lib/posts";
 
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function YouTubeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M21.1 7.2a2.96 2.96 0 0 0-2.08-2.08C17.22 4.6 12 4.6 12 4.6s-5.22 0-7.02.52A2.96 2.96 0 0 0 2.9 7.2C2.38 9 2.38 12 2.38 12s0 3 .52 4.8a2.96 2.96 0 0 0 2.08 2.08c1.8.52 7.02.52 7.02.52s5.22 0 7.02-.52a2.96 2.96 0 0 0 2.08-2.08c.52-1.8.52-4.8.52-4.8s0-3-.52-4.8ZM10.2 15.7V8.3l6.15 3.7-6.15 3.7Z" />
+    </svg>
+  );
+}
+
 export default function HomePage() {
   const totalChecked = posts.reduce(
     (total, post) =>
@@ -45,17 +75,25 @@ export default function HomePage() {
                 href="https://www.instagram.com/deading.ai777/?hl=ko"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-white px-5 py-3 text-sm font-bold text-[#3f0413] shadow-[0_0_28px_rgba(255,255,255,0.22)] transition hover:-translate-y-0.5"
+                aria-label="Instagram 바로가기"
+                className="group flex items-center gap-3 rounded-full bg-white px-4 py-3 text-sm font-bold text-[#3f0413] shadow-[0_0_28px_rgba(255,255,255,0.22)] transition hover:-translate-y-0.5"
               >
-                Instagram 바로가기
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f8d7df] text-[#8a183f] transition group-hover:scale-105">
+                  <InstagramIcon className="h-5 w-5" />
+                </span>
+                <span>Instagram 바로가기</span>
               </a>
               <a
                 href="https://www.youtube.com/@%EC%A0%84%EC%98%81%EC%A4%80-c1h"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-red-500 px-5 py-3 text-sm font-bold text-white shadow-[0_0_28px_rgba(239,68,68,0.32)] transition hover:-translate-y-0.5"
+                aria-label="YouTube 바로가기"
+                className="group flex items-center gap-3 rounded-full bg-red-500 px-4 py-3 text-sm font-bold text-white shadow-[0_0_28px_rgba(239,68,68,0.32)] transition hover:-translate-y-0.5"
               >
-                YouTube 바로가기
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/16 text-white transition group-hover:scale-105">
+                  <YouTubeIcon className="h-5 w-5" />
+                </span>
+                <span>YouTube 바로가기</span>
               </a>
             </div>
 
@@ -89,17 +127,21 @@ export default function HomePage() {
                   href="https://www.instagram.com/deading.ai777/?hl=ko"
                   target="_blank"
                   rel="noreferrer"
-                  className="neon-pill rounded-full px-3 py-2 text-xs font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:text-white"
+                  aria-label="Instagram 프로필 이동"
+                  className="neon-pill flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:text-white"
                 >
-                  Instagram
+                  <InstagramIcon className="h-4 w-4" />
+                  <span>Instagram</span>
                 </a>
                 <a
                   href="https://www.youtube.com/@%EC%A0%84%EC%98%81%EC%A4%80-c1h"
                   target="_blank"
                   rel="noreferrer"
-                  className="neon-pill rounded-full px-3 py-2 text-xs font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:text-white"
+                  aria-label="YouTube 채널 이동"
+                  className="neon-pill flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:text-white"
                 >
-                  YouTube
+                  <YouTubeIcon className="h-4 w-4" />
+                  <span>YouTube</span>
                 </a>
               </div>
             </div>
