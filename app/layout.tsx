@@ -64,7 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-5 py-6 text-sm text-rose-100/70 md:flex-row md:items-center md:justify-between">
               <p>© 2026 RED CHI BLOG · 전영준 · 공공인재빅데이터융합학</p>
               <p className="mono-font text-xs text-rose-200/60">
-                my-first-nbilnuuyh-junyj9900-6038s-projects.vercel.app
+                my-first-lime.vercel.app
               </p>
             </div>
           </footer>

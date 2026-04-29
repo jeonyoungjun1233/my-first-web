@@ -5,7 +5,7 @@
 1. GitHub 저장소 URL
    - `https://github.com/jeonyoungjun1233/my-first-web`
 2. Vercel 배포 URL
-   - `https://my-first-nbilnuuyh-junyj9900-6038s-projects.vercel.app`
+   - `https://my-first-lime.vercel.app`
 
 ## Ch7 필수 포함 파일
 
@@ -38,5 +38,5 @@ GitHub 저장소 URL
 https://github.com/jeonyoungjun1233/my-first-web
 
 Vercel 배포 URL
-https://my-first-nbilnuuyh-junyj9900-6038s-projects.vercel.app
+https://my-first-lime.vercel.app
 ```

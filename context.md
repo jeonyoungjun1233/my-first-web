@@ -16,7 +16,7 @@ Last updated: 2026-04-29
 ## Deployment And Repository
 
 - GitHub repository: `https://github.com/jeonyoungjun1233/my-first-web`
-- Vercel URL for Classroom: `https://my-first-nbilnuuyh-junyj9900-6038s-projects.vercel.app`
+- Vercel URL for Classroom: `https://my-first-lime.vercel.app`
 
 ## Technical Decisions
 

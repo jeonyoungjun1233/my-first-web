@@ -28,7 +28,7 @@ export const profile = {
   department: "공공인재빅데이터융합학",
   siteName: "RED CHI BLOG",
   tagline: "붉은 네온으로 기록하는 Next.js Chapter 5 실습 블로그",
-  deploymentUrl: "https://my-first-nbilnuuyh-junyj9900-6038s-projects.vercel.app",
+  deploymentUrl: "https://my-first-lime.vercel.app",
 };
 
 export const finalChecklist: ChecklistItem[] = [
@@ -307,7 +307,7 @@ export const posts: Post[] = [
         title: "2. 공통 네비게이션과 배포 점검",
         body: [
           "layout.tsx의 네비게이션에는 홈, 블로그, 새 글 쓰기 3개 링크를 배치했다. 모든 페이지가 같은 레이아웃을 공유하므로 어느 주소로 이동해도 같은 네비게이션을 볼 수 있다.",
-          "마지막 점검은 배포와 모바일이다. 실제 배포 주소는 my-first-web-red-chi.vercel.app이며, 레이아웃은 작은 화면에서도 카드와 체크리스트가 한 줄로 무너지지 않도록 모바일 우선으로 구성했다.",
+          "마지막 점검은 배포와 모바일이다. 실제 배포 주소는 my-first-lime.vercel.app이며, 레이아웃은 작은 화면에서도 카드와 체크리스트가 한 줄로 무너지지 않도록 모바일 우선으로 구성했다.",
           "추가로 문서 속 숨은 과제인 onSubmit, onClick, input, textarea의 의미도 작성 페이지 옆 설명 패널에 함께 넣어 실습 보고서에 활용할 수 있게 했다.",
         ],
         checklist: [

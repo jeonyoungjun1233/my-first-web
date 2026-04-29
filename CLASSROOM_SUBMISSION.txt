@@ -4,7 +4,7 @@ GitHub 저장소 URL
 https://github.com/jeonyoungjun1233/my-first-web
 
 Vercel 배포 URL
-https://my-first-nbilnuuyh-junyj9900-6038s-projects.vercel.app
+https://my-first-lime.vercel.app
 
 포함 파일 확인
 - ARCHITECTURE.md
