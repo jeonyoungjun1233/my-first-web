@@ -10,6 +10,7 @@ Last updated: 2026-04-29
 - shadcn/ui components added: `Button`, `Card`, `Input`, `Dialog`.
 - The global design tokens in `app/globals.css` were customized for the red neon blog theme.
 - The project now has `ARCHITECTURE.md`, `WIREFRAMES.md`, `context.md`, and `todo.md`.
+- Two SVG wireframe image files were added under `wireframes/` for stricter Ch7 submission evidence.
 - `.github/copilot-instructions.md` was updated with App Router, shadcn/ui, design token, and Supabase planning rules.
 
 ## Deployment And Repository

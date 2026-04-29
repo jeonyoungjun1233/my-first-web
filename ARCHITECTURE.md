@@ -43,6 +43,11 @@ Header -> `/mypage` -> if not logged in, redirect to `/login` -> load `profiles`
 
 Detailed AI wireframe drafts are kept in `WIREFRAMES.md`.
 
+Included wireframe image files:
+
+- `wireframes/home-page-wireframe.svg`
+- `wireframes/new-post-wireframe.svg`
+
 Required Ch7 wireframes:
 
 - Home page: post card list plus search-oriented entry point.

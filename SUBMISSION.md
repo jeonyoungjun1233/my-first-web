@@ -14,6 +14,8 @@
 - [x] `context.md`
 - [x] `todo.md`
 - [x] `WIREFRAMES.md`
+- [x] `wireframes/home-page-wireframe.svg`
+- [x] `wireframes/new-post-wireframe.svg`
 - [x] `components.json`
 - [x] `components/ui/button.tsx`
 - [x] `components/ui/card.tsx`

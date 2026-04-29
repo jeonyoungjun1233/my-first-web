@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">New post page wireframe</title>
+  <desc id="desc">Low fidelity wireframe for the blog new post page.</desc>
+  <rect width="1200" height="760" fill="#f8fafc"/>
+  <rect x="48" y="36" width="1104" height="76" rx="10" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="78" y="84" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">RED CHI BLOG</text>
+  <text x="840" y="82" font-family="Arial, sans-serif" font-size="18" fill="#334155">Home   Posts   New Post</text>
+
+  <rect x="48" y="148" width="720" height="548" rx="14" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="86" y="200" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">New post form</text>
+  <text x="86" y="254" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#334155">Title</text>
+  <rect x="86" y="274" width="642" height="54" rx="8" fill="#f8fafc" stroke="#64748b"/>
+  <text x="110" y="309" font-family="Arial, sans-serif" font-size="16" fill="#94a3b8">Input</text>
+
+  <text x="86" y="376" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#334155">Content</text>
+  <rect x="86" y="396" width="642" height="190" rx="8" fill="#f8fafc" stroke="#64748b"/>
+  <text x="110" y="438" font-family="Arial, sans-serif" font-size="16" fill="#94a3b8">Textarea</text>
+
+  <rect x="86" y="626" width="200" height="46" rx="9" fill="#fca5a5" stroke="#991b1b"/>
+  <text x="126" y="655" font-family="Arial, sans-serif" font-size="16" fill="#450a0a">Submit post</text>
+  <rect x="310" y="626" width="130" height="46" rx="9" fill="#ffffff" stroke="#991b1b"/>
+  <text x="352" y="655" font-family="Arial, sans-serif" font-size="16" fill="#450a0a">Back</text>
+
+  <rect x="808" y="148" width="344" height="258" rx="14" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="846" y="200" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Live preview</text>
+  <rect x="846" y="234" width="268" height="42" rx="8" fill="#e2e8f0" stroke="#94a3b8"/>
+  <line x1="846" y1="316" x2="1100" y2="316" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+  <line x1="846" y1="348" x2="1058" y2="348" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="808" y="438" width="344" height="258" rx="14" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="846" y="490" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Concept notes</text>
+  <rect x="846" y="526" width="268" height="44" rx="8" fill="#fee2e2" stroke="#991b1b"/>
+  <rect x="846" y="590" width="268" height="44" rx="8" fill="#fee2e2" stroke="#991b1b"/>
+  <rect x="846" y="654" width="268" height="44" rx="8" fill="#fee2e2" stroke="#991b1b"/>
+</svg>

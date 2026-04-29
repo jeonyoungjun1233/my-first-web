@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Home page wireframe</title>
+  <desc id="desc">Low fidelity wireframe for the blog home page.</desc>
+  <rect width="1200" height="760" fill="#f8fafc"/>
+  <rect x="48" y="36" width="1104" height="76" rx="10" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="78" y="84" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">RED CHI BLOG</text>
+  <text x="840" y="82" font-family="Arial, sans-serif" font-size="18" fill="#334155">Home   Posts   New Post</text>
+
+  <rect x="48" y="144" width="1104" height="240" rx="14" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <rect x="78" y="178" width="610" height="172" rx="10" fill="#e2e8f0" stroke="#64748b"/>
+  <text x="108" y="224" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Hero / Blog intro</text>
+  <text x="108" y="264" font-family="Arial, sans-serif" font-size="18" fill="#475569">Goal, profile, and short value statement</text>
+  <rect x="108" y="294" width="150" height="38" rx="8" fill="#fca5a5" stroke="#991b1b"/>
+  <text x="132" y="319" font-family="Arial, sans-serif" font-size="15" fill="#450a0a">View posts</text>
+  <rect x="282" y="294" width="150" height="38" rx="8" fill="#ffffff" stroke="#991b1b"/>
+  <text x="308" y="319" font-family="Arial, sans-serif" font-size="15" fill="#450a0a">New post</text>
+
+  <rect x="728" y="178" width="384" height="172" rx="10" fill="#fee2e2" stroke="#991b1b"/>
+  <text x="758" y="222" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#450a0a">Profile panel</text>
+  <text x="758" y="260" font-family="Arial, sans-serif" font-size="17" fill="#7f1d1d">Name, department, stats</text>
+  <rect x="758" y="286" width="90" height="42" rx="8" fill="#ffffff" stroke="#991b1b"/>
+  <rect x="870" y="286" width="90" height="42" rx="8" fill="#ffffff" stroke="#991b1b"/>
+  <rect x="982" y="286" width="90" height="42" rx="8" fill="#ffffff" stroke="#991b1b"/>
+
+  <text x="48" y="438" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Featured posts</text>
+  <rect x="48" y="466" width="340" height="190" rx="12" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="78" y="512" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Post card</text>
+  <line x1="78" y1="542" x2="330" y2="542" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
+  <line x1="78" y1="574" x2="292" y2="574" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+  <line x1="78" y1="606" x2="340" y2="606" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="424" y="466" width="340" height="190" rx="12" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="454" y="512" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Post card</text>
+  <line x1="454" y1="542" x2="706" y2="542" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
+  <line x1="454" y1="574" x2="668" y2="574" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+  <line x1="454" y1="606" x2="716" y2="606" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="800" y="466" width="352" height="190" rx="12" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+  <text x="830" y="512" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Checklist panel</text>
+  <line x1="830" y1="548" x2="1090" y2="548" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+  <line x1="830" y1="586" x2="1050" y2="586" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+  <line x1="830" y1="624" x2="1110" y2="624" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+</svg>

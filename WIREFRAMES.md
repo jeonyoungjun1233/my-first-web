@@ -1,6 +1,11 @@
 # AI Wireframes - Ch7
 
-These wireframes are AI-generated text drafts for the Ch7 architecture assignment. They are intentionally low-fidelity so the layout structure is clear before detailed implementation.
+These wireframes are AI-generated low-fidelity drafts for the Ch7 architecture assignment. The repository includes both text drafts and SVG image files so the "2 or more wireframes" submission requirement is easy to verify.
+
+Image files:
+
+- `wireframes/home-page-wireframe.svg`
+- `wireframes/new-post-wireframe.svg`
 
 ## 1. Home Page
 

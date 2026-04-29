@@ -12,6 +12,8 @@ https://my-first-nbilnuuyh-junyj9900-6038s-projects.vercel.app
 - context.md
 - todo.md
 - WIREFRAMES.md
+- wireframes/home-page-wireframe.svg
+- wireframes/new-post-wireframe.svg
 - components.json
 - components/ui/button.tsx
 - components/ui/card.tsx
