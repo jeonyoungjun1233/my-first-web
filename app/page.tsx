@@ -64,10 +64,6 @@ export default function HomePage() {
                 <span className="font-semibold text-rose-200">1. 나의 최종목표 :</span> AI를 활용한
                 최대 개발자로 전세계의 내 이름을 알리는것이다
               </p>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-rose-50/78 md:text-lg">
-                {profile.tagline}. ch5A.md와 ch5B.md의 핵심 내용을 3개의 포스트로 나누고,
-                문서에 있던 체크리스트를 하나씩 모두 완료된 상태로 정리했다.
-              </p>
             </div>
 
             <div className="flex flex-wrap gap-3">
