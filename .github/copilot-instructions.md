@@ -1,27 +1,70 @@
-# Project Context
+# Copilot Instructions - my-first-web
 
 ## Tech Stack
-- Next.js 14.2.21 (App Router ONLY)
-- React 18.3.1
-- Tailwind CSS 3.4.17
-- Vercel 배포
 
-## Project Structure
-- `app/layout.js` - 공통 레이아웃과 metadata 관리
-- `app/page.js` - Chapter 2 자기소개 메인 페이지
-- `.github/copilot-instructions.md` - Copilot이 항상 참고해야 하는 프로젝트 규칙
+- Next.js 16.2.2, App Router only
+- React 19.2.4
+- TypeScript
+- Tailwind CSS 4
+- shadcn/ui v4, generated in `components/ui/`
+- Supabase planned for Ch8-Ch12 data, auth, and RLS work
+- Current temporary data sources: `lib/posts.ts` and JSONPlaceholder in `app/posts/page.tsx`
+
+## Project Goal
+
+This project is a personal learning blog. Readers should be able to browse posts, search the list, open a post detail page, and eventually sign in to write and manage their own posts.
+
+Avoid AI slop. Do not generate a generic blog layout without reading `ARCHITECTURE.md`, `context.md`, and `todo.md`. The intended direction is a red neon personal blog with clear reading flow, shadcn/ui primitives, and Supabase-ready data modeling.
 
 ## Coding Conventions
-- Server Component 기본, `use client`는 `useState`, `onClick` 등 브라우저 기능이 필요할 때만 사용
-- `async/await` 패턴을 사용하고 `then` 체이닝은 사용하지 않음
-- JSX에서는 `class` 대신 `className`만 사용
-- Tailwind CSS 유틸리티 클래스만 사용하고 CSS Modules, styled-components는 사용하지 않음
-- 자기소개 정보는 전영준 / 공공인재빅데이터융합학 / 런닝 기준으로 유지
 
-## Known AI Mistakes (DO NOT)
-- `next/router` 사용 금지 -> `next/navigation` 사용
-- `getServerSideProps` 사용 금지 -> App Router 서버 컴포넌트와 라우트 핸들러 사용
-- 불필요한 `use client` 추가 금지 -> 정적 페이지는 서버 컴포넌트로 유지
-- 존재하지 않는 패키지 추천 금지 -> `package.json`에 있는 의존성만 사용
-- JSX에서 `class="..."` 사용 금지 -> `className="..."` 사용
-- 실제 버전을 추측하지 말 것 -> `package.json` 기준으로 먼저 확인
+- Use the App Router under `app/`. Do not create a `pages/` directory.
+- Server Components are the default. Add `"use client"` only for state, effects, browser APIs, event handlers, or `useRouter`.
+- Use `next/link` for internal navigation.
+- If navigation is needed in a Client Component, use `next/navigation`.
+- Use `async/await` instead of long `.then()` chains.
+- Use `className`, never `class`.
+- Keep route files focused. Move reusable UI into `components/`.
+- Keep secrets out of the repo. Future Supabase keys must use `.env.local`.
+
+## Design Tokens
+
+Design tokens live in `app/globals.css`.
+
+- Main concept: red neon blog, dark background, high-contrast text.
+- Primary token: `--primary` for main call-to-action buttons and active states.
+- Background token: `--background` for base app surfaces.
+- Card token: `--card` for shadcn/ui card surfaces.
+- Border token: `--border` for quiet panel outlines.
+- Ring token: `--ring` for focus states.
+- Radius token: `--radius: 0.5rem`.
+- Existing custom utility classes such as `neon-panel`, `neon-pill`, and `glow-text` may stay when they support the current visual identity.
+
+## Component Rules
+
+- Prefer shadcn/ui components from `@/components/ui/` for common controls.
+- Available shadcn/ui primitives: `Button`, `Card`, `Input`, `Dialog`.
+- Use custom components in `components/` for project-specific behavior:
+  - `PostsClient.tsx` for post list filtering and deletion demo state.
+  - `SearchBar.tsx` for the post search input.
+  - `checklist-panel.tsx` for learning checklist display.
+- Do not invent imports from `@/components/ui/` before checking that the file exists.
+- If a form is interactive, keep it as a Client Component and keep validation simple.
+
+## Data And Auth Plan
+
+- Ch8 will replace temporary post data with Supabase.
+- Planned tables: `profiles` and `posts`.
+- `profiles.id` references `auth.users.id`.
+- `posts.user_id` references `profiles.id`.
+- RLS should allow public reads for published posts and owner-only writes for draft/post management.
+
+## Known AI Mistakes
+
+- Do not use `next/router`.
+- Do not use `getServerSideProps`.
+- Do not add `"use client"` to static pages.
+- Do not hard-code Supabase keys.
+- Do not create a data model with integer user IDs. Use UUIDs for Supabase compatibility.
+- Do not overwrite the red neon design tokens with a generic gray theme.
+- Do not assume package versions. Check `package.json` or `npm list` first.

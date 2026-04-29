@@ -25,14 +25,23 @@ const conceptNotes = [
 
 export default function NewPostPage() {
   const router = useRouter();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [form, setForm] = useState({ title: "", content: "" });
   const [isPending, startTransition] = useTransition();
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name, value } = event.target as HTMLInputElement;
+    setForm({ ...form, [name]: value });
+  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    alert("저장되었습니다");
 
+    if (!form.title.trim()) {
+      alert("제목을 입력해주세요");
+      return;
+    }
+
+    alert("저장되었습니다");
     startTransition(() => {
       router.push("/posts");
     });
@@ -62,12 +71,12 @@ export default function NewPostPage() {
             </label>
             <input
               id="title"
+              name="title"
               type="text"
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
+              value={form.title}
+              onChange={handleChange}
               placeholder="예: await params가 왜 중요한가?"
               className="w-full rounded-2xl border border-rose-200/15 bg-black/25 px-4 py-4 text-base text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45 focus:bg-black/35"
-              required
             />
           </div>
 
@@ -77,8 +86,9 @@ export default function NewPostPage() {
             </label>
             <textarea
               id="content"
-              value={content}
-              onChange={(event) => setContent(event.target.value)}
+              name="content"
+              value={form.content}
+              onChange={handleChange}
               placeholder="오늘 실습에서 배운 흐름과 체크리스트를 자유롭게 정리해보세요."
               className="min-h-[220px] w-full rounded-2xl border border-rose-200/15 bg-black/25 px-4 py-4 text-base leading-7 text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45 focus:bg-black/35"
               required
@@ -109,10 +119,10 @@ export default function NewPostPage() {
           <p className="text-xs uppercase tracking-[0.32em] text-rose-200/60">Live Preview</p>
           <div className="neon-outline mt-4 rounded-[24px] bg-black/25 p-4">
             <h3 className="display-font text-xl font-semibold text-white">
-              {title || "제목을 입력하면 여기에 미리보기로 보입니다"}
+              {form.title || "제목을 입력하면 여기에 미리보기로 보입니다"}
             </h3>
             <p className="mt-3 text-sm leading-7 text-rose-50/72">
-              {content ||
+              {form.content ||
                 "textarea에 입력한 내용이 이 카드에 반영됩니다. 제출하면 alert 후 /posts로 이동합니다."}
             </p>
           </div>

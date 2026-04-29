@@ -2,6 +2,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: {
@@ -23,7 +27,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   ];
 
   return (
-    <html lang="ko">
+    <html lang="ko" className={cn("font-sans", geist.variable)}>
       <body className="overflow-x-hidden bg-transparent text-white antialiased">
         <div className="site-shell flex min-h-screen flex-col">
           <header className="sticky top-0 z-30 border-b border-rose-300/10 bg-[#090207]/72 backdrop-blur-xl">
@@ -60,7 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-5 py-6 text-sm text-rose-100/70 md:flex-row md:items-center md:justify-between">
               <p>© 2026 RED CHI BLOG · 전영준 · 공공인재빅데이터융합학</p>
               <p className="mono-font text-xs text-rose-200/60">
-                my-first-web-red-chi.vercel.app
+                my-first-nbilnuuyh-junyj9900-6038s-projects.vercel.app
               </p>
             </div>
           </footer>

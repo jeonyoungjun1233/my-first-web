@@ -28,7 +28,7 @@ export const profile = {
   department: "공공인재빅데이터융합학",
   siteName: "RED CHI BLOG",
   tagline: "붉은 네온으로 기록하는 Next.js Chapter 5 실습 블로그",
-  deploymentUrl: "https://my-first-web-red-chi.vercel.app",
+  deploymentUrl: "https://my-first-nbilnuuyh-junyj9900-6038s-projects.vercel.app",
 };
 
 export const finalChecklist: ChecklistItem[] = [
