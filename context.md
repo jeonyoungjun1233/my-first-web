@@ -45,11 +45,11 @@ Last updated: 2026-05-13
 
 ## Verification
 
-- Previous session: `npx.cmd tsc --noEmit` passed.
-- Previous session: `npm.cmd run build` passed with Next.js 16.2.2.
-- Local dev server was verified with HTTP checks at `http://127.0.0.1:3000`.
-- Checked routes: `/`, `/posts`, `/posts/new`, `/posts/1`.
-- No Next.js error dialog was found in the home page HTML.
+- 2026-05-13: `npm.cmd run build` passed with Next.js 16.2.2.
+- 2026-05-13 local HTTP smoke test passed at `http://127.0.0.1:3000`.
+- 2026-05-13 Vercel smoke test passed at `https://my-first-lime.vercel.app`.
+- Checked routes: `/`, `/chapter-9`, `/login`, `/mypage`, `/posts/new`.
+- Checked auth flow: unauthenticated redirect, login, session restore, protected page access, logout.
 
 ## Notes For Next Session
 
