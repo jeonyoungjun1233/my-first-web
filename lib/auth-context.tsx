@@ -25,7 +25,7 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 
 async function readError(response: Response) {
   const body = await response.json().catch(() => null);
-  return body?.error ?? "인증 요청을 처리하지 못했습니다.";
+  return body?.error ?? `인증 요청을 처리하지 못했습니다. (status: ${response.status})`;
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -52,6 +52,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null);
     const response = await fetch("/api/auth/login", {
       method: "POST",
+      cache: "no-store",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ identifier, password }),
     });
@@ -71,6 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null);
     const response = await fetch("/api/auth/signup", {
       method: "POST",
+      cache: "no-store",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, name }),
     });
