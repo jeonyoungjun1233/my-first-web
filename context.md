@@ -8,7 +8,7 @@ Last updated: 2026-05-13
 - Ch7 architecture work is completed in this session.
 - Ch9A authentication work is now visible at `/chapter-9`.
 - Auth routes are present: `/login`, `/signup`, `/mypage`.
-- Protected routes are enforced by `middleware.ts`: `/mypage`, `/posts/new`.
+- Protected routes are enforced by `proxy.ts` (Next 16 middleware replacement): `/mypage`, `/posts/new`.
 - The original Ch9A source document is tracked at `docs/ch9A.md`.
 - shadcn/ui has been initialized with `components.json`.
 - shadcn/ui components added: `Button`, `Card`, `Input`, `Dialog`.

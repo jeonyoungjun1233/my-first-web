@@ -32,7 +32,7 @@
 - [x] `/login` 페이지 구현
 - [x] `/signup` 페이지 구현
 - [x] 인증 상태 Provider 또는 서버 유틸 정리
-- [x] `middleware.ts`로 `/mypage`, `/posts/new` 보호
+- [x] `proxy.ts`로 `/mypage`, `/posts/new` 보호
 - [ ] Supabase Auth와 `@supabase/ssr` 실제 연결
 - [ ] `/posts/new`를 실제 Supabase insert로 연결
 - [ ] `/posts/[id]/edit` 구현

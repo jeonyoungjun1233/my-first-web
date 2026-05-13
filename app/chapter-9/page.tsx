@@ -14,7 +14,7 @@ const workflow = [
   },
   {
     title: "보호 라우트",
-    body: "middleware.ts가 /mypage와 /posts/new 접근 전에 로그인 여부를 확인합니다.",
+    body: "proxy.ts가 /mypage와 /posts/new 접근 전에 로그인 여부를 확인합니다. Next 16에서는 Ch9A의 middleware 역할을 proxy 파일이 맡습니다.",
     icon: Route,
   },
   {
@@ -113,4 +113,3 @@ export default function Chapter9Page() {
     </div>
   );
 }
-
