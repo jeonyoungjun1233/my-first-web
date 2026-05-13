@@ -36,6 +36,55 @@ export async function getSessionToken() {
   return hashSecret(`${user.id}:${user.email}:${passwordHash}:ch9`);
 }
 
+function toBase64Url(value: string) {
+  return btoa(value).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+
+function fromBase64Url(value: string) {
+  const normalized = value.replace(/-/g, "+").replace(/_/g, "/");
+  const padding = "=".repeat((4 - (normalized.length % 4)) % 4);
+  return atob(normalized + padding);
+}
+
+async function getSessionSignature(payload: string) {
+  const passwordHash = process.env.AUTH_PASSWORD_HASH ?? DEFAULT_PASSWORD_HASH;
+  return hashSecret(`${payload}.${passwordHash}.ch9-session`);
+}
+
+export async function createSessionValue(user: AuthUser) {
+  const payload = toBase64Url(JSON.stringify(user));
+  const signature = await getSessionSignature(payload);
+  return `${payload}.${signature}`;
+}
+
+export async function readSessionValue(value?: string) {
+  if (!value) {
+    return null;
+  }
+
+  if (!value.includes(".")) {
+    const expectedToken = await getSessionToken();
+    return value === expectedToken ? getAuthUser() : null;
+  }
+
+  const [payload, signature] = value.split(".");
+  const expectedSignature = await getSessionSignature(payload);
+
+  if (signature !== expectedSignature) {
+    return null;
+  }
+
+  try {
+    const user = JSON.parse(fromBase64Url(payload)) as AuthUser;
+    if (!user.id || !user.email || !user.name) {
+      return null;
+    }
+    return user;
+  } catch {
+    return null;
+  }
+}
+
 export async function validateLessonCredentials(identifier: string, password: string) {
   const user = getAuthUser();
   const normalizedIdentifier = identifier.trim().toLowerCase();
@@ -49,4 +98,3 @@ export async function validateLessonCredentials(identifier: string, password: st
   const expectedHash = process.env.AUTH_PASSWORD_HASH ?? DEFAULT_PASSWORD_HASH;
   return submittedHash === expectedHash;
 }
-

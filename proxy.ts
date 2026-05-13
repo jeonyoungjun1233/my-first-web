@@ -1,11 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { AUTH_COOKIE_NAME, getSessionToken } from "@/lib/auth-shared";
+import { AUTH_COOKIE_NAME, readSessionValue } from "@/lib/auth-shared";
 
 export async function proxy(request: NextRequest) {
-  const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
-  const expectedToken = await getSessionToken();
+  const user = await readSessionValue(request.cookies.get(AUTH_COOKIE_NAME)?.value);
 
-  if (token === expectedToken) {
+  if (user) {
     return NextResponse.next();
   }
 
@@ -17,4 +16,3 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: ["/mypage/:path*", "/posts/new"],
 };
-

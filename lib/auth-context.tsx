@@ -67,12 +67,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return body.user as AuthUser;
   }, []);
 
-  const signUpWithEmail = useCallback(
-    async (email: string, password: string, _name: string) => {
-      return signInWithEmail(email, password);
-    },
-    [signInWithEmail],
-  );
+  const signUpWithEmail = useCallback(async (email: string, password: string, name: string) => {
+    setError(null);
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, name }),
+    });
+
+    if (!response.ok) {
+      const message = await readError(response);
+      setError(message);
+      throw new Error(message);
+    }
+
+    const body = await response.json();
+    setUser(body.user);
+    return body.user as AuthUser;
+  }, []);
 
   const signOut = useCallback(async () => {
     setError(null);
@@ -105,4 +117,3 @@ export function useAuth() {
 
   return context;
 }
-

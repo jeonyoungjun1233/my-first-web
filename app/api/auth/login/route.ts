@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import {
   AUTH_COOKIE_NAME,
+  createSessionValue,
   getAuthUser,
-  getSessionToken,
   validateLessonCredentials,
 } from "@/lib/auth-shared";
 
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   }
 
   const response = NextResponse.json({ user: getAuthUser() });
-  response.cookies.set(AUTH_COOKIE_NAME, await getSessionToken(), {
+  response.cookies.set(AUTH_COOKIE_NAME, await createSessionValue(getAuthUser()), {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
@@ -38,4 +38,3 @@ export async function POST(request: Request) {
 
   return response;
 }
-
