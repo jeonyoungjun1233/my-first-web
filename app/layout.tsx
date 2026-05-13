@@ -2,17 +2,15 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+import AuthButtons from "@/components/auth-buttons";
+import { AuthProvider } from "@/lib/auth-context";
 
 export const metadata: Metadata = {
   title: {
     default: "RED CHI BLOG",
     template: "%s | RED CHI BLOG",
   },
-  description: "전영준의 Chapter 5 라우팅 과제를 붉은 네온 분위기의 블로그로 정리한 프로젝트",
+  description: "전영준의 Next.js 라우팅과 Ch9 인증 흐름을 정리한 네온 블로그",
 };
 
 type RootLayoutProps = Readonly<{
@@ -23,12 +21,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const links = [
     { href: "/", label: "홈" },
     { href: "/posts", label: "블로그" },
+    { href: "/chapter-9", label: "Ch9 인증" },
     { href: "/posts/new", label: "새 글 쓰기" },
   ];
 
   return (
-    <html lang="ko" className={cn("font-sans", geist.variable)}>
+    <html lang="ko" className="font-sans">
       <body className="overflow-x-hidden bg-transparent text-white antialiased">
+        <AuthProvider>
         <div className="site-shell flex min-h-screen flex-col">
           <header className="sticky top-0 z-30 border-b border-rose-300/10 bg-[#090207]/72 backdrop-blur-xl">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-5 py-4 md:flex-row md:items-center md:justify-between">
@@ -41,17 +41,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 </h1>
               </div>
 
-              <nav className="flex flex-wrap items-center gap-2">
-                {links.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="neon-pill rounded-full px-4 py-2 text-sm font-semibold text-rose-50 transition duration-300 hover:-translate-y-0.5 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
+              <div className="flex flex-wrap items-center gap-2">
+                <nav className="flex flex-wrap items-center gap-2">
+                  {links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="neon-pill rounded-full px-4 py-2 text-sm font-semibold text-rose-50 transition duration-300 hover:-translate-y-0.5 hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
+                <AuthButtons />
+              </div>
             </div>
             <div className="signal-bar h-px w-full" />
           </header>
@@ -69,6 +72,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </div>
           </footer>
         </div>
+        </AuthProvider>
       </body>
     </html>
   );

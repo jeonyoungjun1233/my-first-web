@@ -1,12 +1,30 @@
 import Link from "next/link";
 import ChecklistPanel from "../../components/checklist-panel";
 import PostsClient from "../../components/PostsClient";
-import { finalChecklist } from "../../lib/posts";
+import { finalChecklist, posts as learningPosts } from "../../lib/posts";
+
+async function getPosts() {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=10", {
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      throw new Error("JSONPlaceholder request failed");
+    }
+
+    return res.json();
+  } catch {
+    return learningPosts.map((post) => ({
+      id: post.id,
+      title: post.title,
+      body: post.summary,
+    }));
+  }
+}
 
 export default async function PostsPage() {
-  // 서버에서 JSONPlaceholder를 가져옵니다 (더미 데이터)
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=10");
-  const apiPosts = await res.json();
+  const apiPosts = await getPosts();
 
   return (
     <div className="space-y-8">

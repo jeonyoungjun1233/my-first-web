@@ -1,11 +1,15 @@
 # Context - my-first-web
 
-Last updated: 2026-04-29
+Last updated: 2026-05-13
 
 ## Current State
 
 - Ch1-Ch6 blog routes are present: `/`, `/posts`, `/posts/[id]`, `/posts/new`.
 - Ch7 architecture work is completed in this session.
+- Ch9A authentication work is now visible at `/chapter-9`.
+- Auth routes are present: `/login`, `/signup`, `/mypage`.
+- Protected routes are enforced by `middleware.ts`: `/mypage`, `/posts/new`.
+- The original Ch9A source document is tracked at `docs/ch9A.md`.
 - shadcn/ui has been initialized with `components.json`.
 - shadcn/ui components added: `Button`, `Card`, `Input`, `Dialog`.
 - The global design tokens in `app/globals.css` were customized for the red neon blog theme.
@@ -26,8 +30,9 @@ Last updated: 2026-04-29
 - UI system: shadcn/ui components are stored as source in `components/ui/`.
 - Import alias: `@/*` points to the project root.
 - Current data: local `lib/posts.ts` plus temporary JSONPlaceholder fetch.
+- Current auth: Ch9 learning auth using server route handlers, AuthContext, and an HttpOnly cookie.
 - Future data/auth: Supabase with `profiles` and `posts` tables.
-- Future auth: email/password login with owner-only post management.
+- Future auth: replace the learning auth with Supabase Auth email/password and `@supabase/ssr`.
 
 ## Resolved Issues
 
@@ -35,11 +40,13 @@ Last updated: 2026-04-29
 - `app/posts/new/page.tsx` referenced undefined `title` and `content`. Changed the live preview to use `form.title` and `form.content`.
 - PowerShell blocks `npm` through `npm.ps1`; use `npm.cmd` in this workspace.
 - shadcn init added a circular `--font-sans: var(--font-sans)` token. Replaced it with literal font families in `@theme inline`.
+- `next/font/google` can fail in restricted local builds because it fetches Google Fonts. The layout now uses local CSS font stacks instead.
+- JSONPlaceholder can fail in restricted local builds. `/posts` now falls back to local learning posts when the external fetch is unavailable.
 
 ## Verification
 
-- `npx.cmd tsc --noEmit` passed.
-- `npm.cmd run build` passed with Next.js 16.2.2.
+- Previous session: `npx.cmd tsc --noEmit` passed.
+- Previous session: `npm.cmd run build` passed with Next.js 16.2.2.
 - Local dev server was verified with HTTP checks at `http://127.0.0.1:3000`.
 - Checked routes: `/`, `/posts`, `/posts/new`, `/posts/1`.
 - No Next.js error dialog was found in the home page HTML.
@@ -59,7 +66,8 @@ ARCHITECTURE.md의 설계를 따라줘.
 
 ## Known Constraints
 
-- `/login`, `/signup`, `/mypage`, and `/posts/[id]/edit` are planned but not implemented yet.
 - Supabase is not connected yet.
+- The current Ch9 auth is for classroom flow verification and does not send real email verification messages.
 - Current write form is a client-side demo and does not persist to a database.
 - JSONPlaceholder posts are temporary and should be replaced after Supabase CRUD is added.
+- `/posts/[id]/edit` is still planned but not implemented yet.

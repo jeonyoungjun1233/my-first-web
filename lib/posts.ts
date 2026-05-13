@@ -77,6 +77,21 @@ export const finalChecklist: ChecklistItem[] = [
     text: "배포 URL과 모바일 레이아웃까지 점검할 수 있도록 구조가 정리되어 있는가?",
     checked: true,
   },
+  {
+    id: "final-ch9-doc",
+    text: "docs/ch9A.md 원문을 GitHub 저장소에 포함했는가?",
+    checked: true,
+  },
+  {
+    id: "final-ch9-auth",
+    text: "로그인/회원가입/로그아웃과 보호 라우트 흐름을 연결했는가?",
+    checked: true,
+  },
+  {
+    id: "final-ch9-vercel",
+    text: "Vercel 배포 URL에서 Ch9 인증 페이지를 확인할 수 있는가?",
+    checked: true,
+  },
 ];
 
 export const posts: Post[] = [
@@ -334,6 +349,94 @@ export const posts: Post[] = [
           {
             id: "deploy-mobile",
             text: "모바일에서도 레이아웃이 자연스럽게 보이는가?",
+            checked: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    category: "Chapter 9 Auth",
+    title: "이메일 로그인, 세션 유지, 보호 라우트까지 연결한 Ch9 인증 흐름",
+    summary:
+      "ch9A.md의 Supabase Authentication 학습 목표를 현재 Vercel 블로그에 맞춰 로그인/회원가입/마이페이지/보호 라우트로 구현했다.",
+    route: "/posts/4",
+    readTime: "7 min read",
+    date: "2026-05-13",
+    accent: "linear-gradient(90deg, rgba(244, 63, 94, 0.3), rgba(14, 165, 233, 0.08), transparent)",
+    sections: [
+      {
+        id: "auth-principle",
+        title: "1. 인증과 인가를 먼저 분리했다",
+        body: [
+          "Ch9A의 첫 번째 핵심은 인증(Authentication)과 인가(Authorization)를 구분하는 것이다. 인증은 사용자가 누구인지 확인하는 과정이고, 인가는 그 사용자가 무엇을 할 수 있는지 판단하는 과정이다.",
+          "이번 배포에서는 인증된 사용자만 /mypage와 /posts/new에 들어갈 수 있게 만들었다. DB 권한이나 RLS 같은 인가 계층은 Supabase를 실제 연결하는 다음 단계에서 확장할 수 있다.",
+        ],
+        checklist: [
+          {
+            id: "ch9-auth-vs-authorization",
+            text: "인증은 '누구인가', 인가는 '무엇을 할 수 있는가'로 구분했는가?",
+            checked: true,
+          },
+          {
+            id: "ch9-protected-scope",
+            text: "보호할 경로를 /mypage와 /posts/new로 정했는가?",
+            checked: true,
+          },
+        ],
+      },
+      {
+        id: "auth-implementation",
+        title: "2. 로그인과 세션 유지 흐름을 구현했다",
+        body: [
+          "로그인 화면은 아이디 또는 이메일과 비밀번호를 입력받고, 서버 라우트가 인증 정보를 확인한 뒤 HttpOnly 쿠키를 발급한다. 클라이언트에서는 AuthContext가 현재 사용자와 로딩 상태를 관리한다.",
+          "새로고침 후에도 /api/auth/session이 쿠키를 확인해 사용자를 복원한다. 로그아웃을 누르면 서버가 쿠키를 만료시켜 보호 페이지 접근이 다시 로그인 화면으로 돌아간다.",
+        ],
+        checklist: [
+          {
+            id: "ch9-login-page",
+            text: "/login 페이지에서 이메일/비밀번호 로그인 흐름이 동작하는가?",
+            checked: true,
+          },
+          {
+            id: "ch9-signup-page",
+            text: "/signup 페이지에서 회원가입과 이메일 확인 흐름을 설명하는가?",
+            checked: true,
+          },
+          {
+            id: "ch9-auth-context",
+            text: "AuthProvider와 useAuth로 전역 인증 상태를 제공하는가?",
+            checked: true,
+          },
+          {
+            id: "ch9-session-cookie",
+            text: "세션을 HttpOnly 쿠키로 유지하는가?",
+            checked: true,
+          },
+        ],
+      },
+      {
+        id: "auth-deploy",
+        title: "3. GitHub와 Vercel 제출 기준에 맞게 정리했다",
+        body: [
+          "ch9A.md 원문은 저장소의 docs 폴더에 포함하고, Vercel 화면에는 /chapter-9 페이지로 학습 목표와 체크리스트를 노출했다.",
+          "실제 Supabase 프로젝트를 연결할 때는 @supabase/ssr 기반 client/server helper와 Supabase Email Provider 설정으로 교체하면 된다. 이번 구현은 Supabase 키가 없는 상태에서도 Ch9A의 사용자 흐름을 검증할 수 있게 만든 학습용 버전이다.",
+        ],
+        checklist: [
+          {
+            id: "ch9-docs-copy",
+            text: "docs/ch9A.md가 저장소에 들어가는가?",
+            checked: true,
+          },
+          {
+            id: "ch9-vercel-page",
+            text: "Vercel에서 /chapter-9 페이지로 Ch9 내용을 볼 수 있는가?",
+            checked: true,
+          },
+          {
+            id: "ch9-supabase-next-step",
+            text: "Supabase 전환에 필요한 파일 구조와 설정 포인트를 남겼는가?",
             checked: true,
           },
         ],

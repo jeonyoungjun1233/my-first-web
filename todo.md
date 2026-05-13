@@ -27,9 +27,13 @@
 
 ## 3단계: Ch9-Ch10 인증과 CRUD
 
-- [ ] `/login` 페이지 구현
-- [ ] `/signup` 페이지 구현
-- [ ] 인증 상태 Provider 또는 서버 유틸 정리
+- [x] `docs/ch9A.md` 원문 저장소에 포함
+- [x] `/chapter-9` 페이지 구현
+- [x] `/login` 페이지 구현
+- [x] `/signup` 페이지 구현
+- [x] 인증 상태 Provider 또는 서버 유틸 정리
+- [x] `middleware.ts`로 `/mypage`, `/posts/new` 보호
+- [ ] Supabase Auth와 `@supabase/ssr` 실제 연결
 - [ ] `/posts/new`를 실제 Supabase insert로 연결
 - [ ] `/posts/[id]/edit` 구현
 - [ ] 게시글 삭제 확인 Dialog 구현
@@ -37,13 +41,13 @@
 ## 4단계: Ch11-Ch12 보안과 사용자 페이지
 
 - [ ] Supabase RLS 정책 작성
-- [ ] `/mypage` 구현
+- [x] `/mypage` 구현
 - [ ] 내 게시글 목록과 수정/삭제 흐름 연결
 - [ ] 로딩, 에러, 빈 상태 UI 정리
 - [ ] 배포 환경변수 확인
 
 ## Progress
 
-- 완료: 14
-- 전체: 30
-- 진행률: 14/30 (47%)
+- 완료: 21
+- 전체: 34
+- 진행률: 21/34 (62%)
