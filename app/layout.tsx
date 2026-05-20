@@ -20,8 +20,7 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   const links = [
     { href: "/", label: "홈" },
-    { href: "/posts", label: "블로그" },
-    { href: "/chapter-9", label: "Ch9 인증" },
+    { href: "/posts", label: "Ch10 CRUD" },
     { href: "/posts/new", label: "새 글 쓰기" },
   ];
 
