@@ -1,6 +1,6 @@
 # Context - my-first-web
 
-Last updated: 2026-05-13
+Last updated: 2026-05-23
 
 ## Current State
 
@@ -19,8 +19,8 @@ Last updated: 2026-05-13
 
 ## Deployment And Repository
 
-- GitHub repository: `https://github.com/jeonyoungjun1233/my-first-web`
-- Vercel URL for Classroom: `https://my-first-lime.vercel.app`
+- GitHub repository: `https://github.com/jeonyoungjun1233/WEB`
+- Vercel URL for Classroom: `https://my-first-web-red-chi.vercel.app`
 
 ## Technical Decisions
 
@@ -34,6 +34,19 @@ Last updated: 2026-05-13
 - Future data/auth: Supabase with `profiles` and `posts` tables.
 - Future auth: replace the learning auth with Supabase Auth email/password and `@supabase/ssr`.
 
+## Technical Decisions Added In Ch11
+
+- Security: Supabase RLS policies are tracked as a SQL migration.
+- Migration path: `supabase/migrations/202605230001_add_posts_rls.sql`.
+- `posts` policies:
+  - SELECT: `posts_select_public`, anyone can read with `USING (true)`.
+  - INSERT: `posts_insert_own`, authenticated users can insert only rows where `auth.uid() = user_id` via `WITH CHECK`.
+  - UPDATE: `posts_update_own`, authors only, using both `USING` for the existing row and `WITH CHECK` for the updated row.
+  - DELETE: `posts_delete_own`, authors only via `USING (auth.uid() = user_id)`.
+- `profiles` companion policies are included in a guarded block and only run if `public.profiles` exists:
+  - SELECT: anyone can read.
+  - UPDATE: a user can update only their own profile where `auth.uid() = id`.
+
 ## Resolved Issues
 
 - shadcn/ui init failed because `tsconfig.json` did not have an import alias. Added `baseUrl` and `paths` for `@/*`.
@@ -42,10 +55,12 @@ Last updated: 2026-05-13
 - shadcn init added a circular `--font-sans: var(--font-sans)` token. Replaced it with literal font families in `@theme inline`.
 - `next/font/google` can fail in restricted local builds because it fetches Google Fonts. The layout now uses local CSS font stacks instead.
 - JSONPlaceholder can fail in restricted local builds. `/posts` now falls back to local learning posts when the external fetch is unavailable.
+- Ch11 RLS: client-side author checks remain for UX, but database policies now enforce real authorization.
 
 ## Verification
 
 - 2026-05-13: `npm.cmd run build` passed with Next.js 16.2.2.
+- 2026-05-23: `npm.cmd run build` passed with Next.js 16.2.2.
 - 2026-05-13 local HTTP smoke test passed at `http://127.0.0.1:3000`.
 - 2026-05-13 Vercel smoke test passed at `https://my-first-lime.vercel.app`.
 - Checked routes: `/`, `/chapter-9`, `/login`, `/mypage`, `/posts/new`.
