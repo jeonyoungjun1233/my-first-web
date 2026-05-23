@@ -1,7 +1,7 @@
 # Ch11 RLS Assignment Submission
 
 1. GitHub repository URL
-   - `https://github.com/jeonyoungjun1233/WEB`
+   - `https://github.com/jeonyoungjun1233/my-first-web`
 2. Vercel deployment URL
    - `https://my-first-web-red-chi.vercel.app`
 3. Supabase migration file path

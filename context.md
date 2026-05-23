@@ -19,7 +19,7 @@ Last updated: 2026-05-23
 
 ## Deployment And Repository
 
-- GitHub repository: `https://github.com/jeonyoungjun1233/WEB`
+- GitHub repository: `https://github.com/jeonyoungjun1233/my-first-web`
 - Vercel URL for Classroom: `https://my-first-web-red-chi.vercel.app`
 
 ## Technical Decisions
