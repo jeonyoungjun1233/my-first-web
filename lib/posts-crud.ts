@@ -20,17 +20,17 @@ const demoPosts: DbPost[] = [
   {
     id: "demo-created",
     user_id: DEMO_AUTHOR_ID,
-    title: "작성 성공 데모 게시글",
+    title: "오늘의 프로젝트 기록",
     content:
-      "Supabase 환경 변수가 없는 로컬 검증 환경에서 작성 성공 화면과 작성자 전용 수정/삭제 버튼을 확인하기 위한 데모 데이터입니다.",
+      "블로그 화면을 정리하며 사용자가 보기 쉬운 문구와 여백을 다시 다듬었습니다. 작은 문장 하나도 사이트의 분위기를 바꾼다는 점을 배웠습니다.",
     created_at: "2026-05-20T04:00:00.000Z",
   },
   {
-    id: "demo-ch10",
+    id: "demo-writing",
     user_id: DEMO_AUTHOR_ID,
-    title: "Ch10 Supabase CRUD",
+    title: "글 목록을 다듬으며 배운 것",
     content:
-      "posts 테이블의 id, user_id, title, content, created_at 컬럼 흐름에 맞춰 목록, 상세, 작성, 수정, 삭제 화면을 연결했습니다.",
+      "게시글 목록, 상세 화면, 글 작성 화면이 자연스럽게 이어지도록 문구를 정리했습니다. 실제 개인 블로그처럼 보이도록 카테고리와 버튼 이름도 다시 고쳤습니다.",
     created_at: "2026-05-20T03:00:00.000Z",
   },
 ];

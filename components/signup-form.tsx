@@ -3,7 +3,7 @@
 import { type FormEvent, useState, useTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { MailCheck, UserPlus } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
 export default function SignupForm() {
@@ -28,7 +28,7 @@ export default function SignupForm() {
         setLocalError(
           caught instanceof Error
             ? caught.message
-            : "회원가입 인증 흐름을 완료하지 못했습니다.",
+            : "회원가입을 완료하지 못했습니다.",
         );
       }
     });
@@ -64,7 +64,7 @@ export default function SignupForm() {
           autoComplete="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          placeholder="학교 이메일"
+          placeholder="이메일"
           className="w-full rounded-2xl border border-rose-200/15 bg-black/25 px-4 py-4 text-base text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45 focus:bg-black/35"
           required
         />
@@ -93,11 +93,6 @@ export default function SignupForm() {
         </p>
       ) : null}
 
-      <div className="rounded-2xl border border-rose-200/14 bg-black/20 px-4 py-4 text-sm leading-7 text-rose-50/72">
-        <MailCheck className="mr-2 inline h-4 w-4 text-rose-200" aria-hidden="true" />
-        실제 서비스에서는 Supabase가 이메일 확인 링크를 발송합니다. 이 배포본은 Ch9 제출 확인을 위한 학습용 흐름입니다.
-      </div>
-
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="submit"
@@ -105,7 +100,7 @@ export default function SignupForm() {
           className="inline-flex items-center gap-2 rounded-full bg-rose-400 px-5 py-3 text-sm font-bold text-[#2a040d] shadow-[0_0_28px_rgba(251,113,133,0.42)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
         >
           <UserPlus className="h-4 w-4" aria-hidden="true" />
-          {isPending ? "확인 중" : "회원가입 확인"}
+          {isPending ? "가입 중" : "회원가입"}
         </button>
         <Link
           href="/login"
@@ -117,4 +112,3 @@ export default function SignupForm() {
     </form>
   );
 }
-

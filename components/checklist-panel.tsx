@@ -20,7 +20,7 @@ export default function ChecklistPanel({
       <div className="mb-4 flex items-center justify-between gap-3">
         <div>
           <p className="text-[0.7rem] uppercase tracking-[0.35em] text-rose-200/65">
-            Checklist
+            기록
           </p>
           <h3 className="display-font mt-2 text-lg font-semibold text-white md:text-xl">
             {title}

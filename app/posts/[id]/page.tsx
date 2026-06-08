@@ -18,8 +18,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
   if (error) {
     return (
       <section className="neon-panel mx-auto max-w-3xl rounded-[34px] px-6 py-10 md:px-8">
-        <p className="text-xs uppercase tracking-[0.4em] text-rose-200/60">Read Error</p>
-        <h1 className="display-font glow-text mt-4 text-3xl font-semibold text-white md:text-5xl">
+        <h1 className="display-font glow-text text-3xl font-semibold text-white md:text-5xl">
           게시글을 불러오지 못했습니다
         </h1>
         <p className="mt-4 leading-8 text-rose-50/72">{error.message}</p>
@@ -42,15 +41,12 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
       <section className="neon-panel rounded-[34px] px-6 py-7 md:px-8 md:py-8">
         <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-rose-200/60">
-              Post Detail
-            </p>
+            <p className="text-sm font-semibold text-rose-200/70">개인 기록</p>
             <h1 className="display-font glow-text mt-4 text-3xl font-semibold text-white md:text-5xl">
               {post.title}
             </h1>
             <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-rose-100/58">
               <span>{formatPostDate(post.created_at)}</span>
-              <span>작성자 ID: {post.user_id}</span>
             </div>
           </div>
           <PostActions postId={post.id} authorId={post.user_id} />
@@ -67,7 +63,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
         href="/posts"
         className="neon-pill inline-flex rounded-lg px-5 py-3 text-sm font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:text-white"
       >
-        목록으로
+        목록으로 돌아가기
       </Link>
     </article>
   );

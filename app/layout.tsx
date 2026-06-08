@@ -7,10 +7,10 @@ import { AuthProvider } from "@/lib/auth-context";
 
 export const metadata: Metadata = {
   title: {
-    default: "RED CHI BLOG",
-    template: "%s | RED CHI BLOG",
+    default: "전영준의 네온 블로그",
+    template: "%s | 전영준의 네온 블로그",
   },
-  description: "전영준의 Next.js 라우팅과 Ch9 인증 흐름을 정리한 네온 블로그",
+  description: "AI, 웹 개발, 대학 생활을 기록하는 전영준의 개인 블로그",
 };
 
 type RootLayoutProps = Readonly<{
@@ -20,7 +20,7 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   const links = [
     { href: "/", label: "홈" },
-    { href: "/posts", label: "Ch10 CRUD" },
+    { href: "/posts", label: "블로그 글" },
     { href: "/posts/new", label: "새 글 쓰기" },
   ];
 
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-5 py-4 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-[0.68rem] uppercase tracking-[0.42em] text-rose-200/65">
-                  Red Chi Signal
+                  Neon Blog
                 </p>
                 <h1 className="display-font glow-text mt-2 text-2xl font-semibold text-white">
                   전영준의 네온 블로그
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
           <footer className="border-t border-rose-300/10 bg-[#080205]/70">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-5 py-6 text-sm text-rose-100/70 md:flex-row md:items-center md:justify-between">
-              <p>© 2026 RED CHI BLOG · 전영준 · 공공인재빅데이터융합학</p>
+              <p>© 2026 전영준의 네온 블로그 · 공공인재빅데이터융합학</p>
               <p className="mono-font text-xs text-rose-200/60">
                 my-first-lime.vercel.app
               </p>

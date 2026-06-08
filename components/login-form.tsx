@@ -37,7 +37,7 @@ export default function LoginForm({ nextPath }: LoginFormProps) {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="space-y-2">
         <label htmlFor="identifier" className="text-sm font-semibold text-rose-100/78">
-          아이디 또는 이메일
+          이메일
         </label>
         <input
           id="identifier"
@@ -46,7 +46,7 @@ export default function LoginForm({ nextPath }: LoginFormProps) {
           autoComplete="username"
           value={identifier}
           onChange={(event) => setIdentifier(event.target.value)}
-          placeholder="학습용 아이디 또는 이메일"
+          placeholder="이메일"
           className="w-full rounded-2xl border border-rose-200/15 bg-black/25 px-4 py-4 text-base text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45 focus:bg-black/35"
           required
         />
@@ -89,10 +89,9 @@ export default function LoginForm({ nextPath }: LoginFormProps) {
           className="neon-pill inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:text-white"
         >
           <KeyRound className="h-4 w-4" aria-hidden="true" />
-          회원가입 흐름 보기
+          회원가입하기
         </Link>
       </div>
     </form>
   );
 }
-

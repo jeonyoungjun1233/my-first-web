@@ -44,7 +44,7 @@ export default function PostActions({ postId, authorId }: PostActionsProps) {
         className="inline-flex items-center gap-2 rounded-lg border border-rose-200/24 bg-black/25 px-4 py-2 text-sm font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:border-rose-200/45"
       >
         <Edit3 className="h-4 w-4" aria-hidden="true" />
-        수정
+        수정하기
       </Link>
       <button
         type="button"
@@ -53,7 +53,7 @@ export default function PostActions({ postId, authorId }: PostActionsProps) {
         className="inline-flex items-center gap-2 rounded-lg bg-rose-500/90 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
       >
         <Trash2 className="h-4 w-4" aria-hidden="true" />
-        {deleting ? "삭제 중" : "삭제"}
+        {deleting ? "삭제 중" : "삭제하기"}
       </button>
     </div>
   );

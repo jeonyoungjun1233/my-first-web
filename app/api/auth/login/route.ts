@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
   if (!identifier.trim() || !password) {
     return NextResponse.json(
-      { error: "아이디 또는 이메일과 비밀번호를 모두 입력해 주세요." },
+      { error: "이메일과 비밀번호를 모두 입력해주세요." },
       { status: 400 },
     );
   }
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   if (!isValid) {
     return NextResponse.json(
-      { error: "입력한 인증 정보가 Ch9 학습 계정과 일치하지 않습니다." },
+      { error: "입력한 로그인 정보가 올바르지 않습니다." },
       { status: 401 },
     );
   }

@@ -101,7 +101,7 @@ export default function PostForm({ mode, post }: PostFormProps) {
           className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-5 py-3 text-sm font-bold text-[#2a040d] shadow-[0_0_28px_rgba(251,113,133,0.35)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Save className="h-4 w-4" aria-hidden="true" />
-          {saving ? "저장 중" : mode === "create" ? "게시글 작성" : "수정 완료"}
+          {saving ? "저장 중" : mode === "create" ? "저장하기" : "수정하기"}
         </button>
       </div>
     </form>
