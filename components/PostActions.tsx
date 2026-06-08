@@ -22,14 +22,14 @@ export default function PostActions({ postId, authorId }: PostActionsProps) {
   }
 
   async function handleDelete() {
-    if (!window.confirm("정말 이 게시글을 삭제하시겠습니까?")) return;
+    if (!window.confirm("이 글을 삭제할까요?")) return;
 
     setDeleting(true);
-    const { error } = await deletePost(postId);
+    const { error } = await deletePost(postId, user?.accessToken);
     setDeleting(false);
 
     if (error) {
-      window.alert(`삭제 실패: ${error.message}`);
+      window.alert(error.message);
       return;
     }
 

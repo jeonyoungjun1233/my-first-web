@@ -36,12 +36,15 @@ function toAuthUser(response: SupabaseAuthResponse, fallbackName: string): AuthU
     return null;
   }
 
+  const accessToken = response.access_token ?? null;
+
   return {
     id: user.id,
     email: user.email,
     name: user.user_metadata?.name ?? user.user_metadata?.full_name ?? fallbackName,
     provider: "supabase",
     verified: true,
+    accessToken,
   };
 }
 

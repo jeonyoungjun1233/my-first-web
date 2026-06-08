@@ -1,14 +1,7 @@
-export type ChecklistItem = {
-  id: string;
-  text: string;
-  checked: boolean;
-};
-
 export type PostSection = {
   id: string;
   title: string;
   body: string[];
-  checklist?: ChecklistItem[];
 };
 
 export type Post = {
@@ -31,14 +24,6 @@ export const profile = {
   introduction: "AI와 웹 개발을 공부하며 직접 만든 프로젝트와 배운 내용을 기록합니다.",
   deploymentUrl: "https://my-first-lime.vercel.app",
 };
-
-export const finalChecklist: ChecklistItem[] = [
-  {
-    id: "blog-ready",
-    text: "블로그 화면과 주요 기능을 정리했습니다.",
-    checked: true,
-  },
-];
 
 export const posts: Post[] = [
   {

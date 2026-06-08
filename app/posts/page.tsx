@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { FileText, PenLine } from "lucide-react";
-import { formatPostDate, getPosts } from "@/lib/posts-crud";
+import { PenLine } from "lucide-react";
+import PostsClient from "@/components/PostsClient";
+import { getPosts } from "@/lib/posts-crud";
 
 export default async function PostsPage() {
   const { data: posts, error } = await getPosts();
@@ -34,34 +35,9 @@ export default async function PostsPage() {
           <h2 className="text-lg font-semibold text-white">게시글을 불러오지 못했습니다</h2>
           <p className="mt-3 leading-7 text-rose-50/74">{error.message}</p>
         </section>
-      ) : null}
-
-      {!error && (!posts || posts.length === 0) ? (
-        <section className="neon-panel rounded-[28px] p-8 text-center">
-          <FileText className="mx-auto h-10 w-10 text-rose-200/70" aria-hidden="true" />
-          <h2 className="mt-4 text-xl font-semibold text-white">아직 게시글이 없습니다</h2>
-          <p className="mt-3 text-rose-50/70">첫 기록을 남겨 블로그를 채워보세요.</p>
-        </section>
-      ) : null}
-
-      <section className="grid gap-5 md:grid-cols-2">
-        {posts?.map((post) => (
-          <Link
-            key={post.id}
-            href={`/posts/${post.id}`}
-            className="group neon-panel scan-lines block rounded-[30px] p-6 transition duration-300 hover:-translate-y-1 hover:border-rose-300/40"
-          >
-            <p className="text-xs uppercase tracking-[0.32em] text-rose-200/55">
-              {formatPostDate(post.created_at)}
-            </p>
-            <h2 className="display-font mt-3 text-2xl font-semibold text-white">
-              {post.title}
-            </h2>
-            <p className="mt-4 line-clamp-3 leading-7 text-rose-50/72">{post.content}</p>
-            <p className="mt-5 text-xs text-rose-100/55">개인 기록</p>
-          </Link>
-        ))}
-      </section>
+      ) : (
+        <PostsClient initialPosts={posts ?? []} />
+      )}
     </div>
   );
 }

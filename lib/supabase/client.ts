@@ -22,6 +22,7 @@ class RestQuery<T = unknown> implements PromiseLike<QueryResult<T>> {
     private readonly table: string,
     private readonly url: string | undefined,
     private readonly anonKey: string | undefined,
+    private readonly accessToken?: string | null,
   ) {}
 
   select(columns = "*") {
@@ -81,7 +82,7 @@ class RestQuery<T = unknown> implements PromiseLike<QueryResult<T>> {
     const endpoint = `${this.url.replace(/\/$/, "")}/rest/v1/${this.table}?${this.params.toString()}`;
     const headers: Record<string, string> = {
       apikey: this.anonKey,
-      Authorization: `Bearer ${this.anonKey}`,
+      Authorization: `Bearer ${this.accessToken ?? this.anonKey}`,
       "Content-Type": "application/json",
       Prefer: this.method === "DELETE" ? "return=minimal" : "return=representation",
     };
@@ -123,13 +124,13 @@ class RestQuery<T = unknown> implements PromiseLike<QueryResult<T>> {
   }
 }
 
-export function createClient() {
+export function createClient(accessToken?: string | null) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   return {
     from<T = unknown>(table: string) {
-      return new RestQuery<T>(table, url, anonKey);
+      return new RestQuery<T>(table, url, anonKey, accessToken);
     },
   };
 }

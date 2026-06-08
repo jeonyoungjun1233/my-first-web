@@ -32,15 +32,15 @@ export default function PostForm({ mode, post }: PostFormProps) {
     }
 
     if (!user) {
-      setMessage("로그인한 사용자만 게시글을 저장할 수 있습니다.");
+      setMessage("로그인한 회원만 글을 저장할 수 있습니다.");
       return;
     }
 
     setSaving(true);
     const result =
       mode === "create"
-        ? await createPost({ title: nextTitle, content: nextContent }, user.id)
-        : await updatePost(post!.id, { title: nextTitle, content: nextContent });
+        ? await createPost({ title: nextTitle, content: nextContent }, user.id, user.accessToken)
+        : await updatePost(post!.id, { title: nextTitle, content: nextContent }, user.accessToken);
 
     setSaving(false);
 
@@ -67,7 +67,7 @@ export default function PostForm({ mode, post }: PostFormProps) {
           name="title"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
-          placeholder="게시글 제목을 입력하세요"
+          placeholder="제목을 입력하세요"
           className="w-full rounded-lg border border-rose-200/15 bg-black/25 px-4 py-3 text-base text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45"
           required
         />
@@ -82,7 +82,7 @@ export default function PostForm({ mode, post }: PostFormProps) {
           name="content"
           value={content}
           onChange={(event) => setContent(event.target.value)}
-          placeholder="내용을 입력하세요"
+          placeholder="오늘 남기고 싶은 기록을 적어보세요"
           className="min-h-[260px] w-full rounded-lg border border-rose-200/15 bg-black/25 px-4 py-3 text-base leading-7 text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45"
           required
         />

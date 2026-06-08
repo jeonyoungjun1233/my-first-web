@@ -1,60 +1,61 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { FileText } from "lucide-react";
+import { formatPostDate, type DbPost } from "@/lib/posts-crud";
 import SearchBar from "./SearchBar";
+import { useMemo, useState } from "react";
 
-export default function PostsClient({ initialPosts }: { initialPosts: any[] }) {
-  const [posts, setPosts] = useState<any[]>(initialPosts ?? []);
-  const [filtered, setFiltered] = useState<any[]>(initialPosts ?? []);
+type PostsClientProps = {
+  initialPosts: DbPost[];
+};
 
-  function handleSearch(q: string) {
-    const value = q.trim().toLowerCase();
+export default function PostsClient({ initialPosts }: PostsClientProps) {
+  const [query, setQuery] = useState("");
+  const filteredPosts = useMemo(() => {
+    const value = query.trim().toLowerCase();
+
     if (!value) {
-      setFiltered(posts);
-      return;
+      return initialPosts;
     }
-    setFiltered(
-      posts.filter(
-        (p) => p.title?.toLowerCase().includes(value) || p.body?.toLowerCase().includes(value)
-      )
-    );
-  }
 
-  function handleDelete(id: number) {
-    if (!window.confirm("정말 삭제하시겠습니까?")) return;
-    const updated = posts.filter((p) => p.id !== id);
-    setPosts(updated);
-    setFiltered(updated);
-  }
+    return initialPosts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(value) ||
+        post.content.toLowerCase().includes(value),
+    );
+  }, [initialPosts, query]);
 
   return (
-    <div>
-      <SearchBar onSearch={handleSearch} />
+    <section>
+      <SearchBar query={query} onSearch={setQuery} />
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {filtered.map((post) => (
-          <div
-            key={post.id}
-            className="group neon-panel scan-lines block rounded-[30px] p-6 transition duration-300 hover:-translate-y-1 hover:border-rose-300/40"
-          >
-            <Link href={`/posts/${post.id}`} className="group/block">
-              <h3 className="display-font mt-2 text-lg font-semibold text-white">{post.title}</h3>
-              <p className="mt-3 text-sm text-rose-50/72">{post.body?.slice(0, 120)}...</p>
+      {filteredPosts.length === 0 ? (
+        <div className="neon-panel rounded-[28px] p-8 text-center">
+          <FileText className="mx-auto h-10 w-10 text-rose-200/70" aria-hidden="true" />
+          <h2 className="mt-4 text-xl font-semibold text-white">아직 보여줄 글이 없습니다</h2>
+          <p className="mt-3 text-rose-50/70">검색어를 바꾸거나 첫 기록을 남겨보세요.</p>
+        </div>
+      ) : (
+        <div className="grid gap-5 md:grid-cols-2">
+          {filteredPosts.map((post) => (
+            <Link
+              key={post.id}
+              href={`/posts/${post.id}`}
+              className="group neon-panel scan-lines block rounded-[30px] p-6 transition duration-300 hover:-translate-y-1 hover:border-rose-300/40"
+            >
+              <p className="text-xs uppercase tracking-[0.32em] text-rose-200/55">
+                {formatPostDate(post.created_at)}
+              </p>
+              <h2 className="display-font mt-3 text-2xl font-semibold text-white">
+                {post.title}
+              </h2>
+              <p className="mt-4 line-clamp-3 leading-7 text-rose-50/72">{post.content}</p>
+              <p className="mt-5 text-xs text-rose-100/55">개인 기록</p>
             </Link>
-
-            <div className="mt-4 flex items-center justify-between gap-3 text-sm text-rose-100/56">
-              <span>id: {post.id}</span>
-              <button
-                onClick={() => handleDelete(post.id)}
-                className="rounded-full bg-rose-400 px-3 py-1 text-xs font-semibold text-white"
-              >
-                삭제
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          ))}
+        </div>
+      )}
+    </section>
   );
 }

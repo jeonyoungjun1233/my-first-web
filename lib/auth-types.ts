@@ -4,4 +4,5 @@ export type AuthUser = {
   name: string;
   provider: "blog-cookie" | "supabase";
   verified: boolean;
+  accessToken?: string | null;
 };

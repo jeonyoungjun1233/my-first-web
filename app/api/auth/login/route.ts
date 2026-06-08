@@ -10,6 +10,7 @@ import {
   validateLessonCredentials,
 } from "@/lib/auth-shared";
 import type { AuthUser } from "@/lib/auth-types";
+import { getFriendlyErrorMessage } from "@/lib/error-message";
 
 function readCookieFromHeader(header: string | null, name: string) {
   return (
@@ -64,7 +65,7 @@ export async function POST(request: Request) {
 
   if (!user) {
     return NextResponse.json(
-      { error: authResult.error ?? "입력한 로그인 정보가 올바르지 않습니다." },
+      { error: getFriendlyErrorMessage(authResult.error ?? "입력한 로그인 정보가 올바르지 않습니다.") },
       { status: 401 },
     );
   }

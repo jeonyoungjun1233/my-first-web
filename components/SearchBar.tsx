@@ -1,22 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+type SearchBarProps = {
+  query: string;
+  onSearch: (query: string) => void;
+};
 
-export default function SearchBar({ onSearch }: { onSearch: (q: string) => void }) {
-  const [query, setQuery] = useState<string>("");
-
-  useEffect(() => {
-    onSearch(query);
-  }, [query, onSearch]);
-
+export default function SearchBar({ query, onSearch }: SearchBarProps) {
   return (
-    <div className="mb-4">
+    <div className="mb-5">
       <input
-        type="text"
+        type="search"
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="게시글 검색..."
-        className="w-full px-3 py-2 rounded border bg-black/10 text-sm outline-none"
+        onChange={(event) => onSearch(event.target.value)}
+        placeholder="제목이나 내용으로 검색"
+        className="w-full rounded-lg border border-rose-200/15 bg-black/25 px-4 py-3 text-sm text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45"
       />
     </div>
   );
