@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { AUTH_COOKIE_NAME, readSessionValue } from "@/lib/auth-shared";
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const user = await readSessionValue(request.cookies.get(AUTH_COOKIE_NAME)?.value);
 
   if (user) {

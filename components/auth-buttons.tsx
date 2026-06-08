@@ -19,7 +19,7 @@ export default function AuthButtons() {
   if (loading) {
     return (
       <span className="neon-pill rounded-full px-4 py-2 text-sm font-semibold text-rose-100/70">
-        인증 확인 중
+        확인 중
       </span>
     );
   }
@@ -65,4 +65,3 @@ export default function AuthButtons() {
     </div>
   );
 }
-

@@ -2,7 +2,6 @@ export type AuthUser = {
   id: string;
   email: string;
   name: string;
-  provider: "lesson-cookie";
+  provider: "blog-cookie" | "supabase";
   verified: boolean;
 };
-

@@ -25,7 +25,7 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 
 async function readError(response: Response) {
   const body = await response.json().catch(() => null);
-  return body?.error ?? `인증 요청을 처리하지 못했습니다. (status: ${response.status})`;
+  return body?.error ?? `요청을 처리하지 못했습니다. (status: ${response.status})`;
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
