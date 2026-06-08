@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CommentSection from "@/components/CommentSection";
+import LikeButton from "@/components/LikeButton";
 import PostActions from "@/components/PostActions";
+import { getComments } from "@/lib/comments";
+import { getLikes } from "@/lib/likes";
 import { formatPostDate, getPost } from "@/lib/posts-crud";
 
 type PostDetailPageProps = {
@@ -36,6 +40,11 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
     notFound();
   }
 
+  const [{ data: comments }, { data: likes }] = await Promise.all([
+    getComments(post.id),
+    getLikes(post.id),
+  ]);
+
   return (
     <article className="mx-auto max-w-4xl space-y-6">
       <section className="neon-panel rounded-[34px] px-6 py-7 md:px-8 md:py-8">
@@ -49,7 +58,10 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
               <span>{formatPostDate(post.created_at)}</span>
             </div>
           </div>
-          <PostActions postId={post.id} authorId={post.user_id} />
+          <div className="flex flex-col items-start gap-3 md:items-end">
+            <PostActions postId={post.id} authorId={post.user_id} />
+            <LikeButton postId={post.id} initialLikes={likes ?? []} />
+          </div>
         </div>
       </section>
 
@@ -58,6 +70,8 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
           {post.content}
         </div>
       </section>
+
+      <CommentSection postId={post.id} initialComments={comments ?? []} />
 
       <Link
         href="/posts"

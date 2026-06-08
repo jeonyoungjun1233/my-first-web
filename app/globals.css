@@ -55,6 +55,14 @@ html {
   color-scheme: dark;
 }
 
+html[data-theme="light"] {
+  --bg-base: #fff7f8;
+  --line: rgba(190, 18, 60, 0.2);
+  --text-main: #2a040d;
+  --glow: 0 0 28px rgba(251, 113, 133, 0.13);
+  color-scheme: light;
+}
+
 body {
   position: relative;
   min-height: 100vh;
@@ -66,6 +74,46 @@ body {
     linear-gradient(145deg, #020102 0%, #0c0206 35%, #1b040b 70%, #280611 100%);
   color: var(--text-main);
   font-family: var(--font-body);
+}
+
+html[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(251, 113, 133, 0.14), transparent 24%),
+    radial-gradient(circle at 82% 8%, rgba(239, 68, 68, 0.1), transparent 22%),
+    linear-gradient(145deg, #fffafa 0%, #fff1f3 46%, #ffe4e9 100%);
+  color: #2a040d;
+}
+
+html[data-theme="light"] header,
+html[data-theme="light"] footer {
+  background: rgba(255, 247, 248, 0.82);
+}
+
+html[data-theme="light"] .neon-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 239, 243, 0.88));
+}
+
+html[data-theme="light"] .neon-pill,
+html[data-theme="light"] .neon-outline {
+  background: rgba(255, 255, 255, 0.48);
+}
+
+html[data-theme="light"] .text-white,
+html[data-theme="light"] .text-rose-50,
+html[data-theme="light"] .text-rose-50\/72,
+html[data-theme="light"] .text-rose-50\/74,
+html[data-theme="light"] .text-rose-50\/78,
+html[data-theme="light"] .text-rose-50\/88,
+html[data-theme="light"] .text-rose-100,
+html[data-theme="light"] .text-rose-100\/70,
+html[data-theme="light"] .text-rose-100\/80 {
+  color: #2a040d;
+}
+
+html[data-theme="light"] input,
+html[data-theme="light"] textarea {
+  background: rgba(255, 255, 255, 0.72);
+  color: #2a040d;
 }
 
 body::before,

@@ -63,6 +63,11 @@ class RestQuery<T = unknown> implements PromiseLike<QueryResult<T>> {
     return this;
   }
 
+  limit(count: number) {
+    this.params.set("limit", String(count));
+    return this;
+  }
+
   single() {
     this.wantsSingle = true;
     return this;

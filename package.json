@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "lint": "tsc -p tsconfig.lint.json --noEmit --pretty false",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "node tests/smoke.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

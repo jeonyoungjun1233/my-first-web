@@ -1,7 +1,17 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import PostForm from "@/components/PostForm";
+import { getSessionUser } from "@/lib/session";
 
-export default function NewPostPage() {
+export const dynamic = "force-dynamic";
+
+export default async function NewPostPage() {
+  const user = await getSessionUser();
+
+  if (!user) {
+    redirect("/login?next=/posts/new");
+  }
+
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       <section className="neon-panel rounded-[34px] p-6 md:p-8">

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 import AuthButtons from "@/components/auth-buttons";
+import ThemeToggle from "@/components/ThemeToggle";
 import { AuthProvider } from "@/lib/auth-context";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     { href: "/", label: "홈" },
     { href: "/posts", label: "블로그 글" },
     { href: "/posts/new", label: "새 글 쓰기" },
+    { href: "/mypage", label: "내 프로필" },
   ];
 
   return (
@@ -52,6 +54,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     </Link>
                   ))}
                 </nav>
+                <ThemeToggle />
                 <AuthButtons />
               </div>
             </div>

@@ -1,9 +1,5 @@
--- Ch11 Row Level Security policies for the blog.
--- Scenario:
--- 1. Anyone can read posts.
--- 2. Only signed-in users can create posts as themselves.
--- 3. Only the author can update a post.
--- 4. Only the author can delete a post.
+-- Blog post access policies.
+-- Anyone can read posts, while writing and editing belong to the author.
 
 alter table public.posts enable row level security;
 
@@ -37,9 +33,8 @@ for delete
 to authenticated
 using (auth.uid() = user_id);
 
--- Optional Ch11 companion policy for profiles.
--- This block is safe to run before profiles exists; it only applies policies
--- when public.profiles is already present in the Supabase project.
+-- Optional companion policy for profiles.
+-- This block only applies when public.profiles is already present.
 do $$
 begin
   if to_regclass('public.profiles') is not null then

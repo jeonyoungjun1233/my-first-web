@@ -26,8 +26,13 @@ export default function PostForm({ mode, post }: PostFormProps) {
     const nextTitle = title.trim();
     const nextContent = content.trim();
 
-    if (!nextTitle || !nextContent) {
-      setMessage("제목과 내용을 모두 입력해주세요.");
+    if (!nextTitle) {
+      setMessage("제목을 입력해주세요.");
+      return;
+    }
+
+    if (!nextContent) {
+      setMessage("내용을 입력해주세요.");
       return;
     }
 
@@ -45,7 +50,7 @@ export default function PostForm({ mode, post }: PostFormProps) {
     setSaving(false);
 
     if (result.error) {
-      setMessage(result.error.message);
+      setMessage("글 저장 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
       return;
     }
 

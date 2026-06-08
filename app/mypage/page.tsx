@@ -1,14 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { MailCheck, PenLine, ShieldCheck } from "lucide-react";
+import { CalendarDays, MailCheck, PenLine, ShieldCheck } from "lucide-react";
+import ProfileActions from "@/components/ProfileActions";
 import { getSessionUser } from "@/lib/session";
+import { formatPostDate, getPosts } from "@/lib/posts-crud";
 
-const memberFeatures = [
-  "새 글을 작성할 수 있습니다.",
-  "내가 쓴 글을 수정할 수 있습니다.",
-  "필요 없는 글을 삭제할 수 있습니다.",
-  "로그아웃 후에는 글 관리 화면이 잠깁니다.",
-];
+export const dynamic = "force-dynamic";
 
 export default async function MyPage() {
   const user = await getSessionUser();
@@ -17,15 +14,19 @@ export default async function MyPage() {
     redirect("/login?next=/mypage");
   }
 
+  const { data: posts } = await getPosts();
+  const myPosts = (posts ?? []).filter((post) => post.user_id === user.id);
+  const recentPosts = myPosts.slice(0, 4);
+
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
       <section className="neon-panel rounded-[34px] p-6 md:p-8">
-        <p className="text-xs font-semibold text-rose-200/70">My Page</p>
+        <p className="text-xs font-semibold text-rose-200/70">Profile</p>
         <h2 className="display-font glow-text mt-3 text-3xl font-semibold text-white md:text-5xl">
-          내 블로그 관리
+          내 프로필
         </h2>
         <p className="mt-4 max-w-2xl leading-8 text-rose-50/74">
-          로그인한 회원만 볼 수 있는 공간입니다. 새 글을 쓰고 내 기록을 관리할 수 있습니다.
+          내가 작성한 글과 계정 정보를 확인할 수 있습니다.
         </p>
 
         <div className="mt-7 grid gap-4 md:grid-cols-2">
@@ -38,6 +39,16 @@ export default async function MyPage() {
             <MailCheck className="h-6 w-6 text-rose-200" aria-hidden="true" />
             <p className="mt-3 text-sm font-semibold text-rose-200/70">이메일</p>
             <p className="mt-2 break-all text-xl font-semibold text-white">{user.email}</p>
+          </div>
+          <div className="neon-outline rounded-2xl bg-black/20 p-5">
+            <PenLine className="h-6 w-6 text-rose-200" aria-hidden="true" />
+            <p className="mt-3 text-sm font-semibold text-rose-200/70">작성한 글 수</p>
+            <p className="mt-2 text-xl font-semibold text-white">{myPosts.length}개</p>
+          </div>
+          <div className="neon-outline rounded-2xl bg-black/20 p-5">
+            <CalendarDays className="h-6 w-6 text-rose-200" aria-hidden="true" />
+            <p className="mt-3 text-sm font-semibold text-rose-200/70">가입일</p>
+            <p className="mt-2 text-xl font-semibold text-white">계정 정보 확인 완료</p>
           </div>
         </div>
 
@@ -55,21 +66,32 @@ export default async function MyPage() {
           >
             게시글 목록 보기
           </Link>
+          <ProfileActions />
         </div>
       </section>
 
       <aside className="neon-panel rounded-[28px] p-5">
-        <h3 className="display-font text-2xl font-semibold text-white">회원 전용 기능</h3>
-        <ul className="mt-4 space-y-3">
-          {memberFeatures.map((feature) => (
-            <li
-              key={feature}
-              className="neon-outline rounded-2xl px-3 py-3 text-sm text-rose-50/88"
-            >
-              {feature}
-            </li>
-          ))}
-        </ul>
+        <h3 className="display-font text-2xl font-semibold text-white">최근 작성한 글</h3>
+        <div className="mt-4 space-y-3">
+          {recentPosts.length === 0 ? (
+            <p className="neon-outline rounded-2xl px-3 py-3 text-sm text-rose-50/78">
+              아직 작성한 글이 없습니다.
+            </p>
+          ) : (
+            recentPosts.map((post) => (
+              <Link
+                key={post.id}
+                href={`/posts/${post.id}`}
+                className="neon-outline block rounded-2xl px-3 py-3 text-sm text-rose-50/88 transition hover:-translate-y-0.5 hover:border-rose-200/40"
+              >
+                <span className="block font-semibold text-white">{post.title}</span>
+                <span className="mt-2 block text-xs text-rose-100/58">
+                  {formatPostDate(post.created_at)}
+                </span>
+              </Link>
+            ))
+          )}
+        </div>
       </aside>
     </div>
   );
