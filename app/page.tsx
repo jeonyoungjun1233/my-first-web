@@ -33,34 +33,34 @@ function YouTubeIcon({ className }: { className?: string }) {
 
 export default function HomePage() {
   return (
-    <div className="space-y-8 md:space-y-10">
-      <section className="neon-panel neon-grid relative overflow-hidden rounded-[34px] px-6 py-7 md:px-8 md:py-9">
-        <div className="float-slow absolute -left-10 top-10 h-28 w-28 rounded-full bg-rose-500/20 blur-3xl" />
-        <div className="orbit absolute right-8 top-8 h-24 w-24 rounded-full border border-rose-300/30" />
-        <div className="orbit-delayed absolute bottom-6 right-24 h-16 w-16 rounded-full border border-red-200/20" />
-
-        <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_340px] lg:items-start">
-          <div className="space-y-5">
-            <p className="text-sm font-semibold text-rose-200/75">{profile.tagline}</p>
+    <div className="space-y-12">
+      <section className="relative overflow-hidden">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
+          <div className="space-y-6 text-center lg:col-span-5 lg:text-left">
+            <p className="mono-font inline-block rounded border border-[#ff2d75]/40 bg-[#ff1744]/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.35em] text-[#ffccd5]">
+              {profile.tagline}
+            </p>
             <div>
-              <h2 className="display-font glow-text text-4xl font-semibold tracking-tight text-white md:text-6xl">
-                {profile.siteName}
+              <h2 className="glow-text text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                전영준의 <span className="text-[#ff1744]">네온</span>
+                <br />
+                블로그
               </h2>
-              <p className="mt-4 max-w-2xl rounded-2xl border border-rose-200/10 bg-black/20 px-4 py-4 text-base leading-8 text-rose-50/88 md:text-lg">
+              <p className="mx-auto mt-4 max-w-lg text-sm leading-8 text-neutral-300 md:text-base lg:mx-0">
                 AI를 활용해 더 좋은 개발자가 되기 위한 기록을 남깁니다.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col justify-center gap-4 pt-2 sm:flex-row lg:justify-start">
               <Link
                 href="/posts"
-                className="rounded-full bg-rose-400 px-5 py-3 text-sm font-bold text-[#2a040d] shadow-[0_0_30px_rgba(251,113,133,0.4)] transition hover:-translate-y-0.5"
+                className="neon-gradient-button mono-font rounded-lg px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:-translate-y-0.5"
               >
                 블로그 글 보러가기
               </Link>
               <Link
                 href="/posts/new"
-                className="neon-pill rounded-full px-5 py-3 text-sm font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:text-white"
+                className="mono-font rounded-lg border border-red-500/35 bg-[#180006]/60 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-[#ffccd5] transition-all duration-300 hover:-translate-y-0.5 hover:border-red-400 hover:bg-red-500/10"
               >
                 새 글 쓰기
               </Link>
@@ -69,7 +69,7 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                className="group flex items-center gap-3 rounded-full border border-white/15 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-orange-400 px-4 py-3 text-sm font-bold text-white shadow-[0_0_30px_rgba(236,72,153,0.38)] transition hover:-translate-y-0.5 hover:shadow-[0_0_38px_rgba(244,114,182,0.45)]"
+                className="group flex items-center justify-center gap-3 rounded-lg border border-white/15 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-orange-400 px-5 py-4 text-sm font-bold text-white shadow-[0_0_30px_rgba(236,72,153,0.38)] transition hover:-translate-y-0.5 hover:shadow-[0_0_38px_rgba(244,114,182,0.45)]"
               >
                 <InstagramIcon className="h-5 w-5" />
                 <span>Instagram</span>
@@ -79,7 +79,7 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="YouTube"
-                className="group flex items-center gap-3 rounded-full bg-red-500 px-4 py-3 text-sm font-bold text-white shadow-[0_0_28px_rgba(239,68,68,0.32)] transition hover:-translate-y-0.5"
+                className="group flex items-center justify-center gap-3 rounded-lg bg-red-500 px-5 py-4 text-sm font-bold text-white shadow-[0_0_28px_rgba(239,68,68,0.32)] transition hover:-translate-y-0.5"
               >
                 <YouTubeIcon className="h-5 w-5" />
                 <span>YouTube</span>
@@ -87,36 +87,50 @@ export default function HomePage() {
             </div>
           </div>
 
-          <aside className="grid gap-4">
-            <div className="neon-outline rounded-[28px] bg-black/25 p-5">
-              <p className="text-xs uppercase tracking-[0.32em] text-rose-200/60">Profile</p>
-              <h3 className="display-font mt-3 text-2xl font-semibold text-white">
+          <aside className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-7">
+            <div className="neon-panel neon-card-hover relative flex h-64 flex-col justify-between overflow-hidden rounded-xl p-6">
+              <div className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#ff00cc] to-[#ff1744]" />
+              <div>
+              <div className="flex items-center gap-3">
+                <div className="mono-font flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#ff1744] bg-red-950/30 text-xl font-black text-[#ff1744] shadow-[0_0_15px_rgba(255,23,68,0.4)]">
+                  J
+                </div>
+                <div>
+              <p className="mono-font text-[10px] uppercase tracking-[0.32em] text-rose-200/60">Profile</p>
+              <h3 className="text-sm font-bold tracking-wide text-white">
                 {profile.name}
               </h3>
+                </div>
+              </div>
               <p className="mt-2 text-sm leading-7 text-rose-100/70">
                 {profile.department}
               </p>
               <p className="mt-4 text-sm leading-7 text-rose-50/78">
                 {profile.introduction}
               </p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-3">
-              <div className="neon-outline rounded-2xl bg-black/20 p-4">
-                <p className="text-xs font-semibold text-rose-200/70">글 수</p>
-                <p className="display-font mt-3 text-3xl font-semibold text-white">
+            <div className="neon-panel neon-card-hover relative h-64 overflow-hidden rounded-xl p-6">
+              <div className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#ff1744] to-[#ff8a00]" />
+              <p className="mono-font text-xs text-neutral-400">블로그 기록</p>
+              <div className="mt-5 grid grid-cols-2 gap-4">
+              <div className="rounded border border-red-500/20 bg-red-950/20 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
+                <p className="mono-font text-[10px] text-neutral-400">글 수</p>
+                <p className="mono-font mt-2 text-2xl font-black text-white glow-text">
                   {posts.length}
                 </p>
               </div>
-              <div className="neon-outline rounded-2xl bg-black/20 p-4">
-                <p className="text-xs font-semibold text-rose-200/70">기록</p>
-                <p className="display-font mt-3 text-3xl font-semibold text-white">
+              <div className="rounded border border-red-500/20 bg-red-950/20 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
+                <p className="mono-font text-[10px] text-neutral-400">기록</p>
+                <p className="mono-font mt-2 text-2xl font-black text-[#ff8a00]">
                   {posts.length}
                 </p>
               </div>
-              <div className="neon-outline rounded-2xl bg-black/20 p-4">
-                <p className="text-xs font-semibold text-rose-200/70">프로젝트</p>
-                <p className="display-font mt-3 text-3xl font-semibold text-white">4</p>
+              <div className="col-span-2 rounded border border-red-500/20 bg-red-950/20 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
+                <p className="mono-font text-[10px] text-neutral-400">프로젝트</p>
+                <p className="mono-font mt-2 text-2xl font-black text-white">4</p>
+              </div>
               </div>
             </div>
           </aside>
@@ -128,21 +142,22 @@ export default function HomePage() {
           <Link
             key={post.id}
             href={`/posts/${post.id}`}
-            className="neon-panel group rounded-[30px] p-6 transition duration-300 hover:-translate-y-1 hover:border-rose-300/40"
+            className="neon-panel neon-card-hover group relative flex min-h-72 flex-col justify-between overflow-hidden rounded-xl p-6"
           >
+            <div className="absolute left-0 top-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[#ff1744] to-transparent" />
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <span className="neon-pill rounded-full px-3 py-1 text-xs font-semibold text-rose-100">
+              <span className="rounded-full border border-[#ff2d75]/40 bg-[#ff1744]/20 px-2.5 py-0.5 text-xs font-bold text-[#ffccd5]">
                 {post.category}
               </span>
-              <span className="text-xs text-rose-200/60">{post.date}</span>
+              <span className="mono-font text-xs font-semibold text-neutral-400">{post.date}</span>
             </div>
 
-            <h3 className="display-font mt-5 text-2xl font-semibold text-white transition group-hover:text-rose-100 md:text-3xl">
+            <h3 className="mt-5 text-xl font-extrabold leading-snug text-white transition group-hover:text-[#ff1744] md:text-2xl">
               {post.title}
             </h3>
-            <p className="mt-4 leading-7 text-rose-50/74">{post.summary}</p>
+            <p className="mt-4 leading-7 text-neutral-300">{post.summary}</p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-rose-100/58">
+            <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-red-500/10 pt-4 text-sm text-rose-100/58">
               <span>{post.readTime}</span>
               <span>·</span>
               <span>읽기</span>

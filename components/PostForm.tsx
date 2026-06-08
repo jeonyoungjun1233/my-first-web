@@ -64,7 +64,7 @@ export default function PostForm({ mode, post }: PostFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="space-y-2">
-        <label htmlFor="title" className="text-sm font-semibold text-rose-100/80">
+        <label htmlFor="title" className="mono-font text-xs font-semibold tracking-wider text-neutral-300">
           제목
         </label>
         <input
@@ -73,13 +73,13 @@ export default function PostForm({ mode, post }: PostFormProps) {
           value={title}
           onChange={(event) => setTitle(event.target.value)}
           placeholder="제목을 입력하세요"
-          className="w-full rounded-lg border border-rose-200/15 bg-black/25 px-4 py-3 text-base text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45"
+          className="w-full rounded-lg border border-red-500/30 bg-black/60 px-4 py-3 text-base text-white outline-none transition placeholder:text-neutral-700 focus:border-[#ff1744] focus:ring-2 focus:ring-[#ff1744]/40"
           required
         />
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="content" className="text-sm font-semibold text-rose-100/80">
+        <label htmlFor="content" className="mono-font text-xs font-semibold tracking-wider text-neutral-300">
           내용
         </label>
         <textarea
@@ -88,13 +88,13 @@ export default function PostForm({ mode, post }: PostFormProps) {
           value={content}
           onChange={(event) => setContent(event.target.value)}
           placeholder="오늘 남기고 싶은 기록을 적어보세요"
-          className="min-h-[260px] w-full rounded-lg border border-rose-200/15 bg-black/25 px-4 py-3 text-base leading-7 text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45"
+          className="min-h-[300px] w-full rounded-lg border border-red-500/30 bg-black/60 px-4 py-3 text-base leading-7 text-white outline-none transition placeholder:text-neutral-700 focus:border-[#ff1744] focus:ring-2 focus:ring-[#ff1744]/40"
           required
         />
       </div>
 
       {message ? (
-        <p className="rounded-lg border border-rose-200/20 bg-rose-950/35 px-4 py-3 text-sm text-rose-50">
+        <p className="rounded-lg border border-red-300/25 bg-red-500/10 px-4 py-3 text-sm text-red-100">
           {message}
         </p>
       ) : null}
@@ -103,7 +103,7 @@ export default function PostForm({ mode, post }: PostFormProps) {
         <button
           type="submit"
           disabled={disabled}
-          className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-5 py-3 text-sm font-bold text-[#2a040d] shadow-[0_0_28px_rgba(251,113,133,0.35)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+          className="neon-gradient-button mono-font inline-flex items-center gap-2 rounded-lg px-5 py-3 text-xs font-bold uppercase tracking-[0.15em] text-white transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Save className="h-4 w-4" aria-hidden="true" />
           {saving ? "저장 중" : mode === "create" ? "저장하기" : "수정하기"}

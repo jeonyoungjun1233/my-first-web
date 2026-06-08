@@ -25,7 +25,7 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex items-center gap-2 rounded-full border border-rose-200/20 bg-black/25 px-4 py-2 text-sm font-semibold text-rose-100 transition hover:-translate-y-0.5 hover:border-rose-200/42 hover:text-white"
+      className="inline-flex items-center gap-2 rounded-full border border-red-500/35 bg-black/40 px-4 py-2 text-sm font-semibold text-rose-100 transition hover:-translate-y-0.5 hover:border-red-400 hover:text-white"
     >
       {theme === "dark" ? (
         <Sun className="h-4 w-4" aria-hidden="true" />

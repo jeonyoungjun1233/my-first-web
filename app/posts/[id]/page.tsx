@@ -47,11 +47,12 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
 
   return (
     <article className="mx-auto max-w-4xl space-y-6">
-      <section className="neon-panel rounded-[34px] px-6 py-7 md:px-8 md:py-8">
+      <section className="neon-panel relative overflow-hidden rounded-xl px-6 py-7 md:px-8 md:py-8">
+        <div className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#ff00cc] to-[#ff1744]" />
         <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
           <div>
-            <p className="text-sm font-semibold text-rose-200/70">개인 기록</p>
-            <h1 className="display-font glow-text mt-4 text-3xl font-semibold text-white md:text-5xl">
+            <p className="mono-font text-sm font-semibold tracking-wider text-[#ffccd5]">개인 기록</p>
+            <h1 className="glow-text mt-4 text-3xl font-black text-white md:text-5xl">
               {post.title}
             </h1>
             <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-rose-100/58">
@@ -65,7 +66,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
         </div>
       </section>
 
-      <section className="neon-panel rounded-[30px] p-6 md:p-8">
+      <section className="neon-panel rounded-xl p-6 md:p-8">
         <div className="whitespace-pre-wrap text-[1rem] leading-8 text-rose-50/78">
           {post.content}
         </div>

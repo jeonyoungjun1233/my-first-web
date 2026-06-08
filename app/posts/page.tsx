@@ -8,21 +8,23 @@ export default async function PostsPage() {
 
   return (
     <div className="space-y-8">
-      <section className="neon-panel rounded-[34px] px-6 py-7 md:px-8 md:py-8">
+      <section className="border-b border-red-500/30 pb-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold text-rose-200/70">Blog</p>
-            <h1 className="display-font glow-text mt-3 text-3xl font-semibold text-white md:text-5xl">
+            <p className="mono-font text-xs font-semibold tracking-[0.35em] text-[#ffccd5]">
+              Blog
+            </p>
+            <h1 className="mono-font glow-text mt-3 bg-gradient-to-r from-[#ff00cc] to-[#ff1744] bg-clip-text text-3xl font-black tracking-widest text-transparent md:text-5xl">
               게시글 목록
             </h1>
-            <p className="mt-4 leading-8 text-rose-50/74">
+            <p className="mt-3 text-sm leading-8 text-neutral-400">
               AI, 웹 개발, 대학 생활에 대한 기록을 최신순으로 모았습니다.
             </p>
           </div>
 
           <Link
             href="/posts/new"
-            className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-5 py-3 text-sm font-bold text-[#2a040d] shadow-[0_0_28px_rgba(251,113,133,0.35)] transition hover:-translate-y-0.5"
+            className="neon-gradient-button inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5"
           >
             <PenLine className="h-4 w-4" aria-hidden="true" />
             새 글 쓰기

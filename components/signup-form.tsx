@@ -37,7 +37,7 @@ export default function SignupForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="space-y-2">
-        <label htmlFor="name" className="text-sm font-semibold text-rose-100/78">
+        <label htmlFor="name" className="mono-font text-xs font-semibold uppercase tracking-wider text-neutral-300">
           이름
         </label>
         <input
@@ -48,13 +48,13 @@ export default function SignupForm() {
           value={name}
           onChange={(event) => setName(event.target.value)}
           placeholder="이름 입력"
-          className="w-full rounded-2xl border border-rose-200/15 bg-black/25 px-4 py-4 text-base text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45 focus:bg-black/35"
+          className="w-full rounded-lg border border-red-500/30 bg-black/60 px-4 py-3 text-base text-white shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] outline-none transition placeholder:text-neutral-600 focus:border-[#ff1744] focus:ring-2 focus:ring-[#ff1744]/40"
           required
         />
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="email" className="text-sm font-semibold text-rose-100/78">
+        <label htmlFor="email" className="mono-font text-xs font-semibold uppercase tracking-wider text-neutral-300">
           이메일
         </label>
         <input
@@ -65,13 +65,13 @@ export default function SignupForm() {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder="이메일"
-          className="w-full rounded-2xl border border-rose-200/15 bg-black/25 px-4 py-4 text-base text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45 focus:bg-black/35"
+          className="w-full rounded-lg border border-red-500/30 bg-black/60 px-4 py-3 text-base text-white shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] outline-none transition placeholder:text-neutral-600 focus:border-[#ff1744] focus:ring-2 focus:ring-[#ff1744]/40"
           required
         />
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="signup-password" className="text-sm font-semibold text-rose-100/78">
+        <label htmlFor="signup-password" className="mono-font text-xs font-semibold uppercase tracking-wider text-neutral-300">
           비밀번호
         </label>
         <input
@@ -82,7 +82,7 @@ export default function SignupForm() {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           placeholder="비밀번호 입력"
-          className="w-full rounded-2xl border border-rose-200/15 bg-black/25 px-4 py-4 text-base text-white outline-none transition placeholder:text-rose-100/35 focus:border-rose-300/45 focus:bg-black/35"
+          className="w-full rounded-lg border border-red-500/30 bg-black/60 px-4 py-3 text-base text-white shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] outline-none transition placeholder:text-neutral-600 focus:border-[#ff1744] focus:ring-2 focus:ring-[#ff1744]/40"
           required
         />
       </div>
@@ -97,14 +97,14 @@ export default function SignupForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="inline-flex items-center gap-2 rounded-full bg-rose-400 px-5 py-3 text-sm font-bold text-[#2a040d] shadow-[0_0_28px_rgba(251,113,133,0.42)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+          className="neon-gradient-button mono-font inline-flex items-center gap-2 rounded-lg px-5 py-3 text-xs font-bold uppercase tracking-[0.15em] text-white transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
         >
           <UserPlus className="h-4 w-4" aria-hidden="true" />
           {isPending ? "가입 중" : "회원가입"}
         </button>
         <Link
           href="/login"
-          className="neon-pill rounded-full px-5 py-3 text-sm font-semibold text-rose-50 transition hover:-translate-y-0.5 hover:text-white"
+          className="mono-font rounded-lg border border-red-500/35 bg-[#180006]/60 px-5 py-3 text-xs font-semibold tracking-wider text-[#ffccd5] transition hover:-translate-y-0.5 hover:border-red-400 hover:bg-red-500/10"
         >
           로그인으로 이동
         </Link>
