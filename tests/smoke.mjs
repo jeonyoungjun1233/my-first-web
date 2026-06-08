@@ -15,6 +15,7 @@ const requiredFiles = [
   "lib/supabase/client.ts",
   "supabase/migrations/202605230001_add_posts_rls.sql",
   "supabase/migrations/202606080001_add_comments_likes.sql",
+  "supabase/migrations/202606080002_add_post_media.sql",
 ];
 
 const forbiddenScreenText = [
@@ -53,6 +54,8 @@ const screenFiles = [
   "components/PostsClient.tsx",
   "components/CommentSection.tsx",
   "components/LikeButton.tsx",
+  "components/PostMedia.tsx",
+  "components/LocalPostDetail.tsx",
 ];
 
 for (const file of screenFiles) {

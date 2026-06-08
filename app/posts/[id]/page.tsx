@@ -2,7 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CommentSection from "@/components/CommentSection";
 import LikeButton from "@/components/LikeButton";
+import LocalPostDetail from "@/components/LocalPostDetail";
 import PostActions from "@/components/PostActions";
+import PostMedia from "@/components/PostMedia";
 import { getComments } from "@/lib/comments";
 import { getLikes } from "@/lib/likes";
 import { formatPostDate, getPost } from "@/lib/posts-crud";
@@ -13,6 +15,11 @@ type PostDetailPageProps = {
 
 export default async function PostDetailPage({ params }: PostDetailPageProps) {
   const { id } = await params;
+
+  if (id.startsWith("local-")) {
+    return <LocalPostDetail id={id} />;
+  }
+
   const { data: post, error } = await getPost(id);
 
   if (!post && error?.code === "PGRST116") {
@@ -65,6 +72,12 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
           </div>
         </div>
       </section>
+
+      {post.media_url ? (
+        <section className="neon-panel rounded-xl p-4 md:p-5">
+          <PostMedia url={post.media_url} type={post.media_type} title={post.title} />
+        </section>
+      ) : null}
 
       <section className="neon-panel rounded-xl p-6 md:p-8">
         <div className="whitespace-pre-wrap text-[1rem] leading-8 text-rose-50/78">

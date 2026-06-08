@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BookOpen, PenLine } from "lucide-react";
 import { posts, profile } from "../lib/posts";
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -51,17 +52,19 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="flex flex-col justify-center gap-4 pt-2 sm:flex-row lg:justify-start">
+            <div className="flex flex-col justify-center gap-3 pt-2 sm:flex-row sm:flex-wrap lg:justify-start">
               <Link
                 href="/posts"
-                className="neon-gradient-button mono-font rounded-lg px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:-translate-y-0.5"
+                className="neon-gradient-button mono-font inline-flex min-h-[56px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-2xl px-6 text-xs font-bold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:-translate-y-0.5 sm:w-auto"
               >
+                <BookOpen className="size-5 shrink-0" aria-hidden="true" />
                 블로그 글 보러가기
               </Link>
               <Link
                 href="/posts/new"
-                className="mono-font rounded-lg border border-red-500/35 bg-[#180006]/60 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-[#ffccd5] transition-all duration-300 hover:-translate-y-0.5 hover:border-red-400 hover:bg-red-500/10"
+                className="mono-font inline-flex min-h-[56px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-2xl border border-red-500/35 bg-[#180006]/60 px-6 text-xs font-semibold uppercase tracking-[0.12em] text-[#ffccd5] transition-all duration-300 hover:-translate-y-0.5 hover:border-red-400 hover:bg-red-500/10 sm:w-auto"
               >
+                <PenLine className="size-5 shrink-0" aria-hidden="true" />
                 새 글 쓰기
               </Link>
               <a
@@ -69,9 +72,9 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                className="group flex items-center justify-center gap-3 rounded-lg border border-white/15 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-orange-400 px-5 py-4 text-sm font-bold text-white shadow-[0_0_30px_rgba(236,72,153,0.38)] transition hover:-translate-y-0.5 hover:shadow-[0_0_38px_rgba(244,114,182,0.45)]"
+                className="group inline-flex min-h-[56px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-2xl border border-white/15 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-orange-400 px-6 text-sm font-bold text-white shadow-[0_0_30px_rgba(236,72,153,0.38)] transition hover:-translate-y-0.5 hover:shadow-[0_0_38px_rgba(244,114,182,0.45)] sm:w-auto"
               >
-                <InstagramIcon className="h-5 w-5" />
+                <InstagramIcon className="size-5 shrink-0" />
                 <span>Instagram</span>
               </a>
               <a
@@ -79,9 +82,9 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="YouTube"
-                className="group flex items-center justify-center gap-3 rounded-lg bg-red-500 px-5 py-4 text-sm font-bold text-white shadow-[0_0_28px_rgba(239,68,68,0.32)] transition hover:-translate-y-0.5"
+                className="group inline-flex min-h-[56px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-2xl bg-red-500 px-6 text-sm font-bold text-white shadow-[0_0_28px_rgba(239,68,68,0.32)] transition hover:-translate-y-0.5 sm:w-auto"
               >
-                <YouTubeIcon className="h-5 w-5" />
+                <YouTubeIcon className="size-5 shrink-0" />
                 <span>YouTube</span>
               </a>
             </div>

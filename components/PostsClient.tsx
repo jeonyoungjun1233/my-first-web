@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { FileText } from "lucide-react";
+import { readLocalPosts } from "@/lib/local-posts";
 import { formatPostDate, type DbPost } from "@/lib/posts-crud";
+import PostMedia from "@/components/PostMedia";
 import SearchBar from "./SearchBar";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type PostsClientProps = {
   initialPosts: DbPost[];
@@ -12,19 +14,29 @@ type PostsClientProps = {
 
 export default function PostsClient({ initialPosts }: PostsClientProps) {
   const [query, setQuery] = useState("");
+  const [localPosts, setLocalPosts] = useState<DbPost[]>([]);
+  const allPosts = useMemo(() => {
+    const initialIds = new Set(initialPosts.map((post) => post.id));
+    return [...localPosts.filter((post) => !initialIds.has(post.id)), ...initialPosts];
+  }, [initialPosts, localPosts]);
+
+  useEffect(() => {
+    setLocalPosts(readLocalPosts());
+  }, []);
+
   const filteredPosts = useMemo(() => {
     const value = query.trim().toLowerCase();
 
     if (!value) {
-      return initialPosts;
+      return allPosts;
     }
 
-    return initialPosts.filter(
+    return allPosts.filter(
       (post) =>
         post.title.toLowerCase().includes(value) ||
         post.content.toLowerCase().includes(value),
     );
-  }, [initialPosts, query]);
+  }, [allPosts, query]);
 
   return (
     <section>
@@ -54,6 +66,16 @@ export default function PostsClient({ initialPosts }: PostsClientProps) {
                     {formatPostDate(post.created_at)}
                   </span>
                 </div>
+                {post.media_url ? (
+                  <div className="mt-4">
+                    <PostMedia
+                      url={post.media_url}
+                      type={post.media_type}
+                      title={post.title}
+                      variant="card"
+                    />
+                  </div>
+                ) : null}
                 <h2 className="mt-5 line-clamp-2 text-lg font-extrabold leading-snug text-white transition group-hover:text-[#ff1744]">
                   {post.title}
                 </h2>

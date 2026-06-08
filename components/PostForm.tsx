@@ -1,8 +1,10 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Save } from "lucide-react";
+import { ImagePlus, Save, X } from "lucide-react";
+import { saveLocalPost } from "@/lib/local-posts";
+import { uploadPostMedia, type UploadedMedia } from "@/lib/media-upload";
 import { createPost, updatePost, type DbPost } from "@/lib/posts-crud";
 import { useAuth } from "@/lib/auth-context";
 
@@ -16,8 +18,58 @@ export default function PostForm({ mode, post }: PostFormProps) {
   const { user, loading } = useAuth();
   const [title, setTitle] = useState(post?.title ?? "");
   const [content, setContent] = useState(post?.content ?? "");
+  const [mediaFile, setMediaFile] = useState<File | null>(null);
+  const [mediaPreview, setMediaPreview] = useState<string | null>(post?.media_url ?? null);
+  const [mediaType, setMediaType] = useState<"image" | "video" | null>(post?.media_type ?? null);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (mediaPreview?.startsWith("blob:")) {
+        URL.revokeObjectURL(mediaPreview);
+      }
+    };
+  }, [mediaPreview]);
+
+  function handleMediaChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0] ?? null;
+    setMessage(null);
+
+    if (!file) {
+      return;
+    }
+
+    const nextMediaType = file.type.startsWith("image/")
+      ? "image"
+      : file.type.startsWith("video/")
+        ? "video"
+        : null;
+
+    if (!nextMediaType) {
+      setMessage("이미지 또는 동영상 파일만 업로드할 수 있습니다.");
+      event.target.value = "";
+      return;
+    }
+
+    if (mediaPreview?.startsWith("blob:")) {
+      URL.revokeObjectURL(mediaPreview);
+    }
+
+    setMediaFile(file);
+    setMediaType(nextMediaType);
+    setMediaPreview(URL.createObjectURL(file));
+  }
+
+  function clearMedia() {
+    if (mediaPreview?.startsWith("blob:")) {
+      URL.revokeObjectURL(mediaPreview);
+    }
+
+    setMediaFile(null);
+    setMediaPreview(null);
+    setMediaType(null);
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -42,10 +94,34 @@ export default function PostForm({ mode, post }: PostFormProps) {
     }
 
     setSaving(true);
+    let uploadedMedia: UploadedMedia | null =
+      mediaPreview && !mediaPreview.startsWith("blob:") && mediaType
+        ? { media_url: mediaPreview, media_type: mediaType }
+        : null;
+
+    if (mediaFile) {
+      try {
+        uploadedMedia = await uploadPostMedia(mediaFile, user.id, user.accessToken);
+      } catch (error) {
+        setMessage(
+          error instanceof Error
+            ? `${error.message} 파일 없이 글을 저장합니다.`
+            : "파일 업로드 중 문제가 발생했습니다. 파일 없이 글을 저장합니다.",
+        );
+        uploadedMedia = null;
+      }
+    }
+
+    const input = {
+      title: nextTitle,
+      content: nextContent,
+      media_url: uploadedMedia?.media_url ?? null,
+      media_type: uploadedMedia?.media_type ?? null,
+    };
     const result =
       mode === "create"
-        ? await createPost({ title: nextTitle, content: nextContent }, user.id, user.accessToken)
-        : await updatePost(post!.id, { title: nextTitle, content: nextContent }, user.accessToken);
+        ? await createPost(input, user.id, user.accessToken)
+        : await updatePost(post!.id, input, user.accessToken);
 
     setSaving(false);
 
@@ -54,7 +130,14 @@ export default function PostForm({ mode, post }: PostFormProps) {
       return;
     }
 
-    const savedPost = Array.isArray(result.data) ? result.data[0] : null;
+    const savedPost = Array.isArray(result.data) ? result.data[0] : result.data;
+    if (savedPost?.id.startsWith("local-")) {
+      const savedLocally = saveLocalPost(savedPost);
+      router.push(savedLocally ? `/posts/${savedPost.id}` : "/posts");
+      router.refresh();
+      return;
+    }
+
     router.push(savedPost ? `/posts/${savedPost.id}` : "/posts");
     router.refresh();
   }
@@ -92,6 +175,54 @@ export default function PostForm({ mode, post }: PostFormProps) {
           required
         />
       </div>
+
+      <div className="space-y-2">
+        <label htmlFor="media" className="mono-font text-xs font-semibold tracking-wider text-neutral-300">
+          대표 이미지 또는 동영상
+        </label>
+        <label
+          htmlFor="media"
+          className="flex min-h-[120px] cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-red-500/35 bg-black/35 px-4 py-5 text-center text-sm text-neutral-300 transition hover:border-[#ff1744] hover:bg-red-500/10"
+        >
+          <ImagePlus className="size-5 shrink-0 text-[#ff8a00]" aria-hidden="true" />
+          <span className="mt-2">이미지 또는 동영상 파일을 선택하세요</span>
+          <span className="mt-1 text-xs text-neutral-500">파일이 없어도 글 작성은 가능합니다.</span>
+        </label>
+        <input
+          id="media"
+          name="media"
+          type="file"
+          accept="image/*,video/*"
+          onChange={handleMediaChange}
+          className="sr-only"
+        />
+      </div>
+
+      {mediaPreview && mediaType ? (
+        <div className="neon-outline overflow-hidden rounded-xl p-3">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <p className="text-sm font-semibold text-rose-50">미리보기</p>
+            <button
+              type="button"
+              onClick={clearMedia}
+              className="inline-flex items-center gap-2 rounded-lg border border-red-500/35 bg-black/35 px-3 py-2 text-xs font-semibold text-rose-50 transition hover:border-red-400"
+            >
+              <X className="size-4 shrink-0" aria-hidden="true" />
+              제거
+            </button>
+          </div>
+          {mediaType === "image" ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={mediaPreview}
+              alt="선택한 대표 이미지"
+              className="max-h-[360px] w-full rounded-lg object-cover"
+            />
+          ) : (
+            <video src={mediaPreview} controls className="max-h-[420px] w-full rounded-lg" />
+          )}
+        </div>
+      ) : null}
 
       {message ? (
         <p className="rounded-lg border border-red-300/25 bg-red-500/10 px-4 py-3 text-sm text-red-100">
