@@ -1,0 +1,8 @@
+﻿.\CLASSROOM_SUBMISSION.txt:26:rg -n "service_role|SUPABASE_SERVICE_ROLE|sb_secret|eyJ|postgres(ql)?://|NEXT_PUBLIC_SUPABASE_ANON_KEY|NEXT_PUBLIC_SUPABASE_URL" -g "!node_modules" -g "!.next" -g "!package-lock.json" .
+.\docs\ch9A.md:419:    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+.\docs\ch9A.md:420:    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+.\SUBMISSION.md:20:     `rg -n "service_role|SUPABASE_SERVICE_ROLE|sb_secret|eyJ|postgres(ql)?://|NEXT_PUBLIC_SUPABASE_ANON_KEY|NEXT_PUBLIC_SUPABASE_URL" -g "!node_modules" -g "!.next" -g "!package-lock.json" .`
+.\lib\posts-crud.ts:39:  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+.\lib\supabase\client.ts:76:            "Supabase 환경 변수가 없습니다. NEXT_PUBLIC_SUPABASE_URL과 NEXT_PUBLIC_SUPABASE_ANON_KEY를 설정해주세요.",
+.\lib\supabase\client.ts:127:  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+.\lib\supabase\client.ts:128:  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

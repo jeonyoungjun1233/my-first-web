@@ -22,17 +22,18 @@ export default function PostActions({ postId, authorId }: PostActionsProps) {
   }
 
   async function handleDelete() {
-    if (!window.confirm("이 글을 삭제할까요?")) return;
+    if (!window.confirm("이 글을 삭제하시겠습니까?")) return;
 
     setDeleting(true);
     const { error } = await deletePost(postId, user?.accessToken);
     setDeleting(false);
 
     if (error) {
-      window.alert(error.message);
+      window.alert("글 삭제 중 문제가 발생했습니다.");
       return;
     }
 
+    window.alert("글이 삭제되었습니다.");
     router.push("/posts");
     router.refresh();
   }

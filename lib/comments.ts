@@ -78,3 +78,16 @@ export async function createComment(
 
   return { ...result, error: friendlyError(result.error) };
 }
+
+export async function deleteComment(
+  commentId: string,
+  accessToken?: string | null,
+): Promise<CommentResult<null>> {
+  if (!hasSupabaseEnv()) {
+    return { data: null, error: null };
+  }
+
+  const supabase = createClient(accessToken);
+  const result = await supabase.from<null>("comments").delete().eq("id", commentId);
+  return { ...result, error: friendlyError(result.error) };
+}

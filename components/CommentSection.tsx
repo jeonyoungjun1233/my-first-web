@@ -1,8 +1,8 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
-import { MessageCircle, Send } from "lucide-react";
-import { createComment, type BlogComment } from "@/lib/comments";
+import { MessageCircle, Send, Trash2 } from "lucide-react";
+import { createComment, deleteComment, type BlogComment } from "@/lib/comments";
 import { formatPostDate } from "@/lib/posts-crud";
 import { useAuth } from "@/lib/auth-context";
 
@@ -21,6 +21,25 @@ export default function CommentSection({ postId, initialComments }: CommentSecti
   const [content, setContent] = useState("");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+
+  async function handleDelete(commentId: string) {
+    if (!user) {
+      window.alert("본인이 작성한 댓글만 삭제할 수 있습니다.");
+      return;
+    }
+
+    if (!window.confirm("댓글을 삭제하시겠습니까?")) return;
+
+    const { error } = await deleteComment(commentId, user.accessToken);
+
+    if (error) {
+      window.alert("댓글 삭제 중 문제가 발생했습니다.");
+      return;
+    }
+
+    setComments((current) => current.filter((c) => c.id !== commentId));
+    window.alert("댓글이 삭제되었습니다.");
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -73,13 +92,27 @@ export default function CommentSection({ postId, initialComments }: CommentSecti
         ) : (
           comments.map((comment) => (
             <article key={comment.id} className="neon-outline rounded-2xl bg-black/18 p-4">
-              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-rose-100/58">
-                <span className="font-semibold text-rose-100/80">{comment.author_name}</span>
-                <span>{formatPostDate(comment.created_at)}</span>
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-rose-100/58">
+                    <span className="font-semibold text-rose-100/80">{comment.author_name}</span>
+                    <span>{formatPostDate(comment.created_at)}</span>
+                  </div>
+                  <p className="mt-3 whitespace-pre-wrap leading-7 text-rose-50/78">{comment.content}</p>
+                </div>
+                {user && user.id === comment.user_id ? (
+                  <div className="ml-4 flex-shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(comment.id)}
+                      className="inline-flex items-center gap-2 rounded-md bg-rose-500/90 px-3 py-2 text-xs font-semibold text-white transition hover:opacity-90"
+                    >
+                      <Trash2 className="h-4 w-4" aria-hidden="true" />
+                      삭제
+                    </button>
+                  </div>
+                ) : null}
               </div>
-              <p className="mt-3 whitespace-pre-wrap leading-7 text-rose-50/78">
-                {comment.content}
-              </p>
             </article>
           ))
         )}
