@@ -35,6 +35,20 @@ export function saveLocalPost(post: DbPost) {
   }
 }
 
+export function deleteLocalPost(id: string) {
+  if (!canUseStorage()) {
+    return false;
+  }
+
+  try {
+    const posts = readLocalPosts().filter((post) => post.id !== id);
+    window.localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(posts));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function findLocalPost(id: string) {
   return readLocalPosts().find((post) => post.id === id) ?? null;
 }

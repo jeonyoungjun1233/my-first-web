@@ -2,8 +2,9 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { CalendarDays, MailCheck, PenLine, ShieldCheck } from "lucide-react";
 import ProfileActions from "@/components/ProfileActions";
+import ProfilePostSummary from "@/components/ProfilePostSummary";
 import { getSessionUser } from "@/lib/session";
-import { formatPostDate, getPosts } from "@/lib/posts-crud";
+import { getPosts } from "@/lib/posts-crud";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,6 @@ export default async function MyPage() {
 
   const { data: posts } = await getPosts();
   const myPosts = (posts ?? []).filter((post) => post.user_id === user.id);
-  const recentPosts = myPosts.slice(0, 4);
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
@@ -40,11 +40,7 @@ export default async function MyPage() {
             <p className="mt-3 text-sm font-semibold text-rose-200/70">이메일</p>
             <p className="mt-2 break-all text-xl font-semibold text-white">{user.email}</p>
           </div>
-          <div className="neon-outline rounded-2xl bg-black/20 p-5">
-            <PenLine className="h-6 w-6 text-rose-200" aria-hidden="true" />
-            <p className="mt-3 text-sm font-semibold text-rose-200/70">작성한 글 수</p>
-            <p className="mt-2 text-xl font-semibold text-white">{myPosts.length}개</p>
-          </div>
+          <ProfilePostSummary userId={user.id} initialPosts={myPosts} variant="count" />
           <div className="neon-outline rounded-2xl bg-black/20 p-5">
             <CalendarDays className="h-6 w-6 text-rose-200" aria-hidden="true" />
             <p className="mt-3 text-sm font-semibold text-rose-200/70">가입일</p>
@@ -70,29 +66,7 @@ export default async function MyPage() {
         </div>
       </section>
 
-      <aside className="neon-panel rounded-[28px] p-5">
-        <h3 className="display-font text-2xl font-semibold text-white">최근 작성한 글</h3>
-        <div className="mt-4 space-y-3">
-          {recentPosts.length === 0 ? (
-            <p className="neon-outline rounded-2xl px-3 py-3 text-sm text-rose-50/78">
-              아직 작성한 글이 없습니다.
-            </p>
-          ) : (
-            recentPosts.map((post) => (
-              <Link
-                key={post.id}
-                href={`/posts/${post.id}`}
-                className="neon-outline block rounded-2xl px-3 py-3 text-sm text-rose-50/88 transition hover:-translate-y-0.5 hover:border-rose-200/40"
-              >
-                <span className="block font-semibold text-white">{post.title}</span>
-                <span className="mt-2 block text-xs text-rose-100/58">
-                  {formatPostDate(post.created_at)}
-                </span>
-              </Link>
-            ))
-          )}
-        </div>
-      </aside>
+      <ProfilePostSummary userId={user.id} initialPosts={myPosts} variant="recent" />
     </div>
   );
 }
